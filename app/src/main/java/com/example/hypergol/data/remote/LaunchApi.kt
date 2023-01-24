@@ -13,7 +13,7 @@ interface LaunchApi {
     suspend fun getUpcomingLaunches(
         @Query("offset") page: Int,
         @Query("limit") per_page: Int
-    ): String
+    ): List<UpcomingLaunch>
 
     // Launch detail
     @GET("/launch/{id}/?mode=detailed&format=json")
