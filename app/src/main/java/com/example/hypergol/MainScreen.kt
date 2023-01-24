@@ -9,6 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -16,14 +17,6 @@ import com.example.hypergol.screens.NewsScreen
 
 @Composable
 fun MainScreen() {
-    /*
-    val navController = rememberNavController()
-    Scaffold(
-        bottomBar = { BottomBar(navController = navController)}
-    ){
-        // Contains destinations for the bottom navbar
-        BottomNavGraph(navController = navController)
-    }*/
     val navController = rememberNavController()
 
     val screens = listOf(
@@ -60,30 +53,6 @@ fun MainScreen() {
 }
 
 @Composable
-fun BottomBar(navController: NavHostController){
-    val screens = listOf(
-        BottomBarScreen.Launches,
-        BottomBarScreen.News,
-        BottomBarScreen.Wiki,
-    )
-
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
-     Scaffold(
-         bottomBar = {
-             NavigationBar() {
-                 screens.forEach{screen ->
-                    AddItem(screen = screen, currentDestination = currentDestination, navController = navController)
-                 }
-             }
-         }
-     ) {
-
-     }
-}
-
-@Composable
 fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
@@ -102,7 +71,11 @@ fun RowScope.AddItem(
             it.route == screen.route
         } == true, // If route from current dst matches route passed from screen, make it selected
         onClick = {
-            navController.navigate(screen.route)
+            navController.navigate(screen.route){
+                // Back button always returns main page - Launches
+                popUpTo(navController.graph.findStartDestination().id)
+                launchSingleTop = true
+            }
         }
     )
 }
