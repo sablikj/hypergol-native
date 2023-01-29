@@ -5,5 +5,4 @@ import dagger.hilt.android.HiltAndroidApp
 
 // Used to generate the necessary code for dependency injection
 @HiltAndroidApp
-class MyApplication: Application() {
-}
+class MyApplication: Application() {}

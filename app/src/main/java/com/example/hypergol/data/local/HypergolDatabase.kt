@@ -2,12 +2,21 @@ package com.example.hypergol.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.hypergol.data.local.dao.LaunchRemoteKeysDao
 import com.example.hypergol.data.local.dao.UpcomingLaunchDao
 import com.example.hypergol.model.LaunchRemoteKeys
-import com.example.hypergol.model.UpcomingLaunch
+import com.example.hypergol.model.Launch
+import com.example.hypergol.util.Converters
 
-@Database(entities = [UpcomingLaunch::class, LaunchRemoteKeys::class], version = 1)
+
+@TypeConverters(Converters::class)
+@Database(
+    entities = [Launch::class, LaunchRemoteKeys::class],
+    version = 1,/*
+    autoMigrations = [
+        AutoMigration(from = 1, to = 3)
+    ]*/)
 abstract class HypergolDatabase : RoomDatabase()  {
 
     abstract fun upcomingLaunchDao(): UpcomingLaunchDao

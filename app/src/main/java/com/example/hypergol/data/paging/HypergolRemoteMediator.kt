@@ -8,23 +8,21 @@ import androidx.room.withTransaction
 import com.example.hypergol.data.local.HypergolDatabase
 import com.example.hypergol.data.remote.LaunchApi
 import com.example.hypergol.model.LaunchRemoteKeys
-import com.example.hypergol.model.UpcomingLaunch
+import com.example.hypergol.model.Launch
 import com.example.hypergol.util.Constants.ITEMS_PER_PAGE
-import javax.inject.Inject
 
 @ExperimentalPagingApi
-class HypergolRemoteMediator @Inject constructor(
+class HypergolRemoteMediator(
     private val launchApi: LaunchApi,
     private val hypergolDatabase: HypergolDatabase
-) : RemoteMediator<Int, UpcomingLaunch>() {
+) : RemoteMediator<Int, Launch>() {
 
     private val upcomingLaunchDao = hypergolDatabase.upcomingLaunchDao()
     private val launchRemoteKeysDao = hypergolDatabase.launchRemoteKeysDao()
 
-
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, UpcomingLaunch>
+        state: PagingState<Int, Launch>
     ): MediatorResult {
         return try {
             // Calculating current page number
@@ -35,7 +33,6 @@ class HypergolRemoteMediator @Inject constructor(
                     // if next page is null, set current to 1
                     remoteKeys?.nextPage?.minus(1) ?: 1
                 }
-
                 LoadType.PREPEND -> {
                     val remoteKeys = getRemoteKeyForFirstItem(state)
                     val prevPage = remoteKeys?.prevPage
@@ -55,7 +52,8 @@ class HypergolRemoteMediator @Inject constructor(
             }
 
             val response = launchApi.getUpcomingLaunches(page = currentPage, per_page = ITEMS_PER_PAGE)
-            val endOfPaginationReached = response.isEmpty()
+            val launches = response.results
+            val endOfPaginationReached = launches.isEmpty()
 
             val prevPage = if (currentPage == 1) null else currentPage - 1
             val nextPage = if (endOfPaginationReached) null else currentPage + 1
@@ -65,7 +63,7 @@ class HypergolRemoteMediator @Inject constructor(
                     upcomingLaunchDao.deleteAllUpcomingLaunches()
                     launchRemoteKeysDao.deleteAllRemoteKeys()
                 }
-                val keys = response.map { upcomingLaunch ->
+                val keys = launches.map { upcomingLaunch ->
                     LaunchRemoteKeys(
                         id = upcomingLaunch.id,
                         prevPage = prevPage,
@@ -73,7 +71,7 @@ class HypergolRemoteMediator @Inject constructor(
                     )
                 }
                 launchRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)
-                upcomingLaunchDao.addUpcomingLaunches(launches = response)
+                upcomingLaunchDao.addUpcomingLaunches(launches = launches)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception){
@@ -82,7 +80,7 @@ class HypergolRemoteMediator @Inject constructor(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, UpcomingLaunch>
+        state: PagingState<Int, Launch>
     ): LaunchRemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let {id ->
@@ -92,7 +90,7 @@ class HypergolRemoteMediator @Inject constructor(
     }
 
     private suspend fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, UpcomingLaunch>
+        state: PagingState<Int, Launch>
     ): LaunchRemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let {upcomingLaunch ->
@@ -101,7 +99,7 @@ class HypergolRemoteMediator @Inject constructor(
     }
 
     private suspend fun getRemoteKeyForLastItem(
-        state: PagingState<Int, UpcomingLaunch>
+        state: PagingState<Int, Launch>
     ): LaunchRemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { upcomingLaunch ->

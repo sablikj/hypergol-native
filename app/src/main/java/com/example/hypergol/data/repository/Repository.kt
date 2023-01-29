@@ -7,7 +7,7 @@ import androidx.paging.PagingData
 import com.example.hypergol.data.local.HypergolDatabase
 import com.example.hypergol.data.paging.HypergolRemoteMediator
 import com.example.hypergol.data.remote.LaunchApi
-import com.example.hypergol.model.UpcomingLaunch
+import com.example.hypergol.model.Launch
 import com.example.hypergol.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class Repository  @Inject constructor(
     // Called from Main screen, returning flow of data
     // Data are coming from database, not API directly
     @ExperimentalPagingApi
-    fun getUpcomingLaunches(): Flow<PagingData<UpcomingLaunch>> {
+    fun getUpcomingLaunches(): Flow<PagingData<Launch>> {
         val pagingSourceFactory = { hypergolDatabase.upcomingLaunchDao().getAllUpcomingLaunches() }
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
