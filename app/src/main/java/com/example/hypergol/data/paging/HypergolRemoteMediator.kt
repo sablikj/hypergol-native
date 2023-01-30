@@ -26,16 +26,16 @@ class HypergolRemoteMediator(
     ): MediatorResult {
         return try {
             // Calculating current page number
-            val currentPage = when (loadType) {
+            val currentOffset = when (loadType) {
                 // On first request to server
                 LoadType.REFRESH -> {
                     val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
                     // if next page is null, set current to 1
-                    remoteKeys?.nextPage?.minus(1) ?: 1
+                    remoteKeys?.nextOffset?.minus(1) ?: 0
                 }
                 LoadType.PREPEND -> {
                     val remoteKeys = getRemoteKeyForFirstItem(state)
-                    val prevPage = remoteKeys?.prevPage
+                    val prevPage = remoteKeys?.prevOffset
                         ?: return MediatorResult.Success(
                             endOfPaginationReached = remoteKeys != null
                         )
@@ -43,7 +43,7 @@ class HypergolRemoteMediator(
                 }
                 LoadType.APPEND -> {
                     val remoteKeys = getRemoteKeyForLastItem(state)
-                    val nextPage = remoteKeys?.nextPage
+                    val nextPage = remoteKeys?.nextOffset
                         ?: return MediatorResult.Success(
                             endOfPaginationReached = remoteKeys != null
                         )
@@ -51,12 +51,13 @@ class HypergolRemoteMediator(
                 }
             }
 
-            val response = launchApi.getUpcomingLaunches(page = currentPage, per_page = ITEMS_PER_PAGE)
+            val response = launchApi.getUpcomingLaunches(offset = currentOffset, limit = ITEMS_PER_PAGE)
             val launches = response.results
             val endOfPaginationReached = launches.isEmpty()
 
-            val prevPage = if (currentPage == 1) null else currentPage - 1
-            val nextPage = if (endOfPaginationReached) null else currentPage + 1
+            // Offset by items per page
+            val prevPage = if (currentOffset == 0) null else currentOffset - ITEMS_PER_PAGE
+            val nextPage = if (endOfPaginationReached) null else currentOffset + ITEMS_PER_PAGE
 
             hypergolDatabase.withTransaction {
                 if(loadType == LoadType.REFRESH){
@@ -66,8 +67,8 @@ class HypergolRemoteMediator(
                 val keys = launches.map { upcomingLaunch ->
                     LaunchRemoteKeys(
                         id = upcomingLaunch.id,
-                        prevPage = prevPage,
-                        nextPage = nextPage
+                        prevOffset = prevPage,
+                        nextOffset = nextPage
                     )
                 }
                 launchRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)

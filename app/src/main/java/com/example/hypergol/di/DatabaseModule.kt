@@ -3,7 +3,7 @@ package com.example.hypergol.di
 import android.content.Context
 import androidx.room.Room
 import com.example.hypergol.data.local.HypergolDatabase
-import com.example.hypergol.util.Constants.HYPERGOL_DATABASE
+import com.example.hypergol.util.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context,
             HypergolDatabase::class.java,
-            HYPERGOL_DATABASE
+            DATABASE_NAME
         ).build()
     }
 }

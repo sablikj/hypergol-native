@@ -12,18 +12,17 @@ data class Launch(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "upcoming_launch_id")
     val id: String,
-    val url: String,
     @ColumnInfo(name = "upcoming_launch_name")
     val name: String,
-    val net: String,
+    val net: String?,
     @Embedded
     val launch_service_provider: LaunchProvider,
     @Embedded
-    val rocket: Rocket,
+    val rocket: Rocket?,
     @Embedded
-    val mission: Mission,
+    val mission: Mission?,
     @Embedded
-    val pad: Pad,
+    val pad: Pad?,
     val image: String = "app/src/main/res/drawable/ic_placeholder.xml"
 )
 
@@ -33,14 +32,23 @@ data class LaunchProvider(
     @ColumnInfo(name = "launch_provider_id")
     val id: Int,
     @ColumnInfo(name = "launch_provider_name")
-    val name: String,
-    val type: String
+    val name: String?,
+    val type: String?
 )
 //TODO: wrong model structure
 @Serializable
 @SerialName("rocket")
 data class Rocket(
     @ColumnInfo(name = "rocket_id")
+    val id: Int,
+    @Embedded
+    val configuration: Configuration?
+)
+
+@Serializable
+@SerialName("configuration")
+data class Configuration(
+    @ColumnInfo(name = "rocket_config_id")
     val id: Int,
     @ColumnInfo(name = "rocket_name")
     val name: String?,
@@ -56,10 +64,19 @@ data class Mission(
     val id: Int,
     @ColumnInfo(name = "mission_name")
     val name: String?,
-    val description: String?,
-    val launch_designator: String?,
     @ColumnInfo(name = "mission_type")
     val type: String?,
+    @Embedded
+    val orbit: Orbit?
+)
+
+@Serializable
+@SerialName("orbit")
+data class Orbit(
+    @ColumnInfo(name = "orbit_id")
+    val id: Int,
+    @ColumnInfo(name = "orbit_name")
+    val name: String?
 )
 
 @Serializable

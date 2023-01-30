@@ -2,21 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2beb89ee6890752dcae7904c477e3567",
+    "identityHash": "14503d28e5130912cbcaf747bff59e4e",
     "entities": [
       {
         "tableName": "upcoming_launches_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`upcoming_launch_id` TEXT NOT NULL, `url` TEXT NOT NULL, `upcoming_launch_name` TEXT NOT NULL, `net` TEXT NOT NULL, `image` TEXT NOT NULL, `launch_provider_id` INTEGER NOT NULL, `launch_provider_name` TEXT NOT NULL, `type` TEXT NOT NULL, `rocket_id` INTEGER NOT NULL, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `mission_id` INTEGER NOT NULL, `mission_name` TEXT, `description` TEXT, `launch_designator` TEXT, `mission_type` TEXT, `pad_id` INTEGER NOT NULL, `pad_name` TEXT, PRIMARY KEY(`upcoming_launch_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`upcoming_launch_id` TEXT NOT NULL, `upcoming_launch_name` TEXT NOT NULL, `net` TEXT, `image` TEXT NOT NULL, `launch_provider_id` INTEGER NOT NULL, `launch_provider_name` TEXT, `type` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_type` TEXT, `orbit_id` INTEGER, `orbit_name` TEXT, `pad_id` INTEGER, `pad_name` TEXT, PRIMARY KEY(`upcoming_launch_id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "upcoming_launch_id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "url",
-            "columnName": "url",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -30,7 +24,7 @@
             "fieldPath": "net",
             "columnName": "net",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "image",
@@ -48,40 +42,46 @@
             "fieldPath": "launch_service_provider.name",
             "columnName": "launch_provider_name",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "launch_service_provider.type",
             "columnName": "type",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "rocket.id",
             "columnName": "rocket_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
-            "fieldPath": "rocket.name",
+            "fieldPath": "rocket.configuration.id",
+            "columnName": "rocket_config_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rocket.configuration.name",
             "columnName": "rocket_name",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "rocket.family",
+            "fieldPath": "rocket.configuration.family",
             "columnName": "family",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "rocket.full_name",
+            "fieldPath": "rocket.configuration.full_name",
             "columnName": "full_name",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "rocket.variant",
+            "fieldPath": "rocket.configuration.variant",
             "columnName": "variant",
             "affinity": "TEXT",
             "notNull": false
@@ -90,23 +90,11 @@
             "fieldPath": "mission.id",
             "columnName": "mission_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "mission.name",
             "columnName": "mission_name",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "mission.description",
-            "columnName": "description",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "mission.launch_designator",
-            "columnName": "launch_designator",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -117,10 +105,22 @@
             "notNull": false
           },
           {
+            "fieldPath": "mission.orbit.id",
+            "columnName": "orbit_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mission.orbit.name",
+            "columnName": "orbit_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "pad.id",
             "columnName": "pad_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "pad.name",
@@ -140,7 +140,7 @@
       },
       {
         "tableName": "launch_remote_keys",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `prevPage` INTEGER, `nextPage` INTEGER, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `prevOffset` INTEGER, `nextOffset` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -149,14 +149,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "prevPage",
-            "columnName": "prevPage",
+            "fieldPath": "prevOffset",
+            "columnName": "prevOffset",
             "affinity": "INTEGER",
             "notNull": false
           },
           {
-            "fieldPath": "nextPage",
-            "columnName": "nextPage",
+            "fieldPath": "nextOffset",
+            "columnName": "nextOffset",
             "affinity": "INTEGER",
             "notNull": false
           }
@@ -174,7 +174,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2beb89ee6890752dcae7904c477e3567')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '14503d28e5130912cbcaf747bff59e4e')"
     ]
   }
 }

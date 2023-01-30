@@ -11,8 +11,8 @@ interface LaunchApi {
     // Upcoming launches - main page
     @GET("launch/upcoming/?mode=detailed&format=json")
     suspend fun getUpcomingLaunches(
-        @Query("offset") page: Int,
-        @Query("limit") per_page: Int
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): UpcomingLaunchResponse
 
     // Launch detail

@@ -54,13 +54,12 @@ fun UpcomingLaunchItem(launch: Launch){
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(launch.image)
-            .crossfade(true)
+            .crossfade(durationMillis = 1000)
+            .error(R.drawable.ic_placeholder)
             .placeholder(R.drawable.ic_placeholder)
             .build(),
         contentScale = ContentScale.Fit
     )
-
-    val context = LocalContext.current
 
     Card(
         onClick = { Log.d("click", "clicked on card") },
@@ -114,7 +113,7 @@ fun UpcomingLaunchItem(launch: Launch){
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Text(
-                        text = "${launch.mission.type} | ${launch.launch_service_provider.name}",
+                        text = "${launch.mission?.type} | ${launch.launch_service_provider.name}",
                         color = Color.Gray,
                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                         fontWeight = FontWeight.Medium,
@@ -134,7 +133,6 @@ fun UpcomingLaunchPreview(){
     UpcomingLaunchItem(
         launch = Launch(
             id = "1",
-            url = "",
             name = "Starling launch",
             net = "25/01/2023 15:56:02",
             launch_service_provider = LaunchProvider(
@@ -144,17 +142,19 @@ fun UpcomingLaunchPreview(){
             ),
             rocket = Rocket(
                 id = 1,
-                name = "Falcon 9",
-                family = "Falcon",
-                full_name = "Falcon 9 Block 5",
-                variant = "Block 5",
+                configuration = Configuration(
+                    id = 1,
+                    name = "Falcon 9",
+                    family = "Falcon",
+                    full_name = "Falcon 9 Block 5",
+                    variant = "Block 5",
+                )
             ),
             mission = Mission(
                 id = 1,
                 name = "Starlink launch",
-                description = "",
-                launch_designator = "",
-                type = "Communications"
+                type = "Communications",
+                orbit = Orbit(id = 1, name = "LEO")
             ),
             pad = Pad(
                 id = 1,
