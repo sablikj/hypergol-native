@@ -4,12 +4,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import com.example.hypergol.util.Constants.TWITTER_TIMELINE
+import com.example.hypergol.util.Constants.TWITTER_TIMELINE_DARK
+import com.example.hypergol.util.Constants.TWITTER_TIMELINE_LIGHT
 
 
 @Composable
@@ -18,7 +20,9 @@ fun NewsScreen(){
 }
 
 @Composable
-fun TwitterTimeline(){
+fun TwitterTimeline(
+    useDarkTheme: Boolean = isSystemInDarkTheme()
+){
         AndroidView(
         modifier = Modifier.fillMaxWidth(),
         factory = {
@@ -31,7 +35,12 @@ fun TwitterTimeline(){
             setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
             settings.javaScriptEnabled = true
-            loadData(TWITTER_TIMELINE, "text/html", "UTF-8")
+
+            if(!useDarkTheme){
+                loadData(TWITTER_TIMELINE_LIGHT, "text/html", "UTF-8")
+            }else{
+                loadData(TWITTER_TIMELINE_DARK, "text/html", "UTF-8")
+            }
         }
     })
 }

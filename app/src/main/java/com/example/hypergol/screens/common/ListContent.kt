@@ -80,7 +80,7 @@ fun UpcomingLaunchItem(launch: Launch){
                 Row(
                     modifier = Modifier
                         .height(30.dp)
-                        .background(colorResource(id = R.color.Primary))
+                        .background(MaterialTheme.colorScheme.primary)
                         .fillMaxWidth()
                         .padding(horizontal = 6.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -106,7 +106,7 @@ fun UpcomingLaunchItem(launch: Launch){
                 Row(
                     modifier = Modifier
                         .height(25.dp)
-                        .background(colorResource(id = R.color.Primary))
+                        .background(MaterialTheme.colorScheme.primary)
                         .fillMaxWidth()
                         .padding(horizontal = 6.dp),
                     verticalAlignment = Alignment.CenterVertically,

@@ -19,7 +19,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.ExperimentalPagingApi
 
+@OptIn(ExperimentalPagingApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen() {
@@ -40,10 +42,11 @@ fun MainScreen() {
                 title = {
                     Text(
                         stringResource(id = R.string.app_name),
-                        style = MaterialTheme.typography.headlineLarge
+                        style = MaterialTheme.typography.headlineLarge,
+                        //color = MaterialTheme.colorScheme.primaryContainer
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = colorResource(id = R.color.Primary))
+                colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary) //TopAppBarDefaults.smallTopAppBarColors(containerColor = colorResource(id = R.color.Primary))
             )
         },
         bottomBar = {

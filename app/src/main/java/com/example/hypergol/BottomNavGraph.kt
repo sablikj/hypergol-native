@@ -5,11 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.paging.ExperimentalPagingApi
+import coil.annotation.ExperimentalCoilApi
 import com.example.hypergol.screens.news.NewsScreen
 import com.example.hypergol.screens.launches.UpcomingLaunchesScreen
 import com.example.hypergol.screens.WikiScreen
 
-@OptIn(ExperimentalPagingApi::class)
+@ExperimentalPagingApi
+@ExperimentalCoilApi
 @Composable
 fun BottomNavGraph(navController: NavHostController) {
     NavHost(
