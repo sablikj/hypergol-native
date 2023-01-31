@@ -4,27 +4,30 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import com.example.hypergol.R
 
 
 sealed class BottomBarScreen(
     val route: String,
     val title: String,
-    val icon: ImageVector
+    val icon: Int
 ){
     object Launches : BottomBarScreen(
         route = "upcomingLaunches",
         title = "Launches",
-        icon = Icons.Default.Home
+        icon = R.drawable.ic_outline_rocket_launch_24
     )
     object News : BottomBarScreen(
         route = "news",
         title = "News",
-        icon = Icons.Default.ThumbUp
+        icon = R.drawable.ic_baseline_newspaper_24
     )
     object Wiki : BottomBarScreen(
         route = "wiki",
         title = "Wiki",
-        icon = Icons.Default.AccountBox
+        icon = R.drawable.ic_outline_school_24
     )
 }
