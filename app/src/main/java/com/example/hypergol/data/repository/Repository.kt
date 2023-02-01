@@ -8,6 +8,7 @@ import com.example.hypergol.data.local.HypergolDatabase
 import com.example.hypergol.data.paging.HypergolRemoteMediator
 import com.example.hypergol.data.remote.LaunchApi
 import com.example.hypergol.model.Launch
+import com.example.hypergol.model.LaunchDetail
 import com.example.hypergol.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

@@ -26,6 +26,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import com.example.hypergol.data.local.HypergolDatabase
+import com.example.hypergol.model.common.Pad
 
 @ExperimentalCoilApi
 @Composable
@@ -42,7 +44,7 @@ fun ListContent(itemsList: LazyPagingItems<Launch>) {
                 upcomingLaunch.id
             }
         ){
-            upcomingLaunch ->
+                upcomingLaunch ->
             upcomingLaunch?.let { UpcomingLaunchItem(launch = it) }
         }
     }
@@ -50,7 +52,7 @@ fun ListContent(itemsList: LazyPagingItems<Launch>) {
 
 @ExperimentalCoilApi
 @Composable
-fun UpcomingLaunchItem(launch: Launch){
+fun UpcomingLaunchItem(launch: Launch){ //TODO: pass navcontroller for navigation
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(launch.image)
@@ -62,7 +64,7 @@ fun UpcomingLaunchItem(launch: Launch){
     )
 
     Card(
-        onClick = { Log.d("click", "clicked on card") },
+        onClick = {  },
         modifier = Modifier
             .fillMaxWidth()
     ) {
@@ -96,7 +98,7 @@ fun UpcomingLaunchItem(launch: Launch){
                     )
                     Text(
                         text = "NET",
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                         fontWeight = FontWeight.Bold,
                         maxLines = 2,
@@ -113,8 +115,8 @@ fun UpcomingLaunchItem(launch: Launch){
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Text(
-                        text = "${launch.mission?.type} | ${launch.launch_service_provider.name}",
-                        color = Color.Gray,
+                        text = "${launch.mission?.type} | ${launch.launch_service_provider?.name}",
+                        color = MaterialTheme.colorScheme.onSecondary,
                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                         fontWeight = FontWeight.Medium,
                         maxLines = 1,
@@ -125,7 +127,7 @@ fun UpcomingLaunchItem(launch: Launch){
         }
     }
 }
-
+/*
 @ExperimentalCoilApi
 @Composable
 @Preview
@@ -163,4 +165,4 @@ fun UpcomingLaunchPreview(){
             image = ""
         )
     )
-}
+}*/

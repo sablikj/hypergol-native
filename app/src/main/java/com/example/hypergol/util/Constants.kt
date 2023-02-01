@@ -7,6 +7,7 @@ object Constants {
 
     const val UPCOMING_LAUNCHES_TABLE = "upcoming_launches_table"
     const val LAUNCH_REMOTE_KEYS_TABLE = "launch_remote_keys"
+    const val LAUNCH_DETAIL_TABLE = "launch_detail_table"
 
     const val DATABASE_NAME = "hypergol_database"
 

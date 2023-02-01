@@ -8,7 +8,7 @@ import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
 import com.example.hypergol.screens.news.NewsScreen
 import com.example.hypergol.screens.launches.UpcomingLaunchesScreen
-import com.example.hypergol.screens.WikiScreen
+import com.example.hypergol.screens.wiki.WikiScreen
 
 @ExperimentalPagingApi
 @ExperimentalCoilApi
