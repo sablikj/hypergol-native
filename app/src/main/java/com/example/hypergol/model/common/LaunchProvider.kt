@@ -8,20 +8,20 @@ import kotlinx.serialization.Serializable
 @SerialName("launch_service_provider")
 data class LaunchProvider(
     @ColumnInfo(name = "launch_provider_id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = "launch_provider_name")
-    val name: String?,
+    val name: String? = "",
     @ColumnInfo(name = "launch_provider_type")
-    val type: String?,
+    val type: String? = "",
     @ColumnInfo(name = "launch_provider_description")
-    val description: String?,
+    val description: String? = "",
     @ColumnInfo(name = "launch_provider_administrator")
-    val administrator: String?,
-    val founding_year: Int?,
+    val administrator: String? = "",
+    val founding_year: Int? = 0,
     @ColumnInfo(name = "launch_provider_count")
-    val total_launch_count: Int?,
-    val successful_launches: Int?,
-    val failed_launches: Int?,
+    val total_launch_count: Int? = 0,
+    val successful_launches: Int? = 0,
+    val failed_launches: Int? = 0,
     @ColumnInfo(name = "launch_provider_image")
-    val image_url: String?
+    val image_url: String? = ""
 )

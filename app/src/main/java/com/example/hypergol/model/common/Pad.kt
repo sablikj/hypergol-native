@@ -9,23 +9,23 @@ import kotlinx.serialization.SerialName
 @SerialName("pad")
 data class Pad (
     @ColumnInfo(name = "pad_id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = "pad_url")
-    val url: String?,
-    val agency_id: Int?,
+    val url: String? = "",
+    val agency_id: Int? = 0,
     @ColumnInfo(name = "pad_name")
-    val name: String?,
-    val map_image: String?,
+    val name: String? = "",
+    val map_image: String? = "",
     @ColumnInfo(name = "pad_launch_count")
-    val total_launch_count: Int?,
+    val total_launch_count: Int? = 0,
     @Embedded
-    val location: Location?
+    val location: Location = Location()
 )
 
 @Serializable
 @SerialName("location")
 data class Location (
     @ColumnInfo(name = "pad_location_name")
-    val name: String?,
-    val country_code: String?
+    val name: String? = "",
+    val country_code: String? = ""
 )

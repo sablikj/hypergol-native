@@ -17,8 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hypergol.R
-import com.example.hypergol.screens.common.ListContent
-import kotlinx.serialization.json.JsonNull.content
 
 
 @ExperimentalMaterial3Api

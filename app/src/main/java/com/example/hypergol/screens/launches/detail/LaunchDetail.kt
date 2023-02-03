@@ -12,24 +12,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.hypergol.R
+import com.example.hypergol.data.repository.Repository
 import com.example.hypergol.model.LaunchDetail
 
 
 @Composable
-fun LaunchDetail(detail: LaunchDetail) {
+fun LaunchDetail()
+{
+    val viewModel = hiltViewModel<LaunchDetailViewModel>()
+    val uiState = viewModel.uiState
+
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(detail.image_url)
+            .data(uiState.detail?.image_url)
             .crossfade(durationMillis = 1000)
             .error(R.drawable.ic_placeholder)
             .placeholder(R.drawable.ic_placeholder)
@@ -58,7 +62,7 @@ fun LaunchDetail(detail: LaunchDetail) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text( //TODO: Countdown
-                    text = detail.net.toString(),
+                    text = uiState.formattedNet,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                     fontWeight = FontWeight.Bold,
@@ -68,16 +72,16 @@ fun LaunchDetail(detail: LaunchDetail) {
             }
             // Main card
             Card(
-                onClick = { Log.d("click", "clicked on card") },
                 modifier = Modifier
                     .padding(6.dp)
                     .fillMaxWidth()
+                    .height(intrinsicSize = IntrinsicSize.Max)
             ) {
                 Column() {
                     Image(
                         modifier = Modifier.fillMaxWidth(),
                         painter = painter,
-                        contentDescription = detail.name,
+                        contentDescription = uiState.detail?.name,
                         contentScale = ContentScale.Crop
                     )
                     Row(
@@ -89,7 +93,7 @@ fun LaunchDetail(detail: LaunchDetail) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = detail.name.toString(),
+                            text = uiState.detail?.name.toString(),
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                             fontWeight = FontWeight.Bold,
@@ -106,7 +110,7 @@ fun LaunchDetail(detail: LaunchDetail) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = detail.mission?.description.toString(),
+                            text = uiState.detail?.mission?.description.toString(),
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                             fontWeight = FontWeight.Normal,

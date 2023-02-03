@@ -1,11 +1,9 @@
 package com.example.hypergol.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.example.hypergol.model.common.*
 import com.example.hypergol.util.Constants
+import com.example.hypergol.util.Converters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,27 +12,28 @@ import kotlinx.serialization.Serializable
 data class LaunchDetail(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "launch_detail_id")
-    val id: String,
-    val url: String?,
+    val id: String = "",
+    val url: String? = "",
     @ColumnInfo(name = "launch_detail_name")
-    val name: String?,
+    val name: String? = "",
     @Embedded
-    val status: Status?,
+    val status: Status? = Status(),
+    //@Embedded
+    //@TypeConverters(Converters::class)
+    //val updates: MutableList<Update>,
+    val net: String? = "",
+    val window_end: String? = "",
+    val window_start: String? = "",
     @Embedded
-    val updates: List<Update>?,
-    val net: String?,
-    val window_end: String?,
-    val window_start: String?,
+    val launch_service_provider: LaunchProvider? = LaunchProvider(),
     @Embedded
-    val launch_service_provider: LaunchProvider?,
+    val rocket: Rocket? = Rocket(),
     @Embedded
-    val rocket: Rocket?,
+    val mission: Mission? = Mission(),
     @Embedded
-    val mission: Mission?,
-    @Embedded
-    val pad: Pad?,
+    val pad: Pad? = Pad(),
     @SerialName("image")
-    val image_url: String?
+    val image_url: String? = ""
     )
 
 @Serializable

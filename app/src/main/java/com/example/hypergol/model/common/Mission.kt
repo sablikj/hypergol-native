@@ -9,22 +9,22 @@ import kotlinx.serialization.Serializable
 @SerialName("mission")
 data class Mission(
     @ColumnInfo(name = "mission_id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = "mission_name")
-    val name: String?,
+    val name: String? = "",
     @ColumnInfo(name = "mission_description")
-    val description: String?,
+    val description: String? = "",
     @ColumnInfo(name = "mission_designator")
-    val launch_designator: String?,
+    val launch_designator: String? = "",
     @ColumnInfo(name = "mission_type")
-    val type: String?,
+    val type: String? = "",
     @Embedded
-    val orbit: Orbit?
+    val orbit: Orbit? = Orbit()
 )
 
 @Serializable
 @SerialName("orbit")
 data class Orbit(
     @ColumnInfo(name = "orbit_name")
-    val name: String?
+    val name: String? = ""
 )

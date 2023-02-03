@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @SerialName("status")
 data class Status (
     @ColumnInfo(name = "status_name")
-    val name: String?,
+    val name: String? = "",
     @ColumnInfo(name = "status_description")
-    val description: String?
+    val description: String? = ""
 )
