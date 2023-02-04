@@ -11,13 +11,13 @@ data class Mission(
     @ColumnInfo(name = "mission_id")
     val id: Int = 0,
     @ColumnInfo(name = "mission_name")
-    val name: String? = "",
+    val name: String? = "Unknown",
     @ColumnInfo(name = "mission_description")
     val description: String? = "",
     @ColumnInfo(name = "mission_designator")
     val launch_designator: String? = "",
     @ColumnInfo(name = "mission_type")
-    val type: String? = "",
+    val type: String? = "Unknown",
     @Embedded
     val orbit: Orbit? = Orbit()
 )
@@ -26,5 +26,5 @@ data class Mission(
 @SerialName("orbit")
 data class Orbit(
     @ColumnInfo(name = "orbit_name")
-    val name: String? = ""
+    val name: String? = "Unknown"
 )

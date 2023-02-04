@@ -3,6 +3,7 @@ package com.example.hypergol.model
 import androidx.room.*
 import com.example.hypergol.model.common.*
 import com.example.hypergol.util.Constants.UPCOMING_LAUNCHES_TABLE
+import com.example.hypergol.util.formatDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,6 +19,7 @@ data class Launch(
     @Embedded
     val status: Status?,
     val net: String?,
+    val formattedNet: String? = formatDate(net),
     @Embedded
     val launch_service_provider: LaunchProvider?,
     @Embedded

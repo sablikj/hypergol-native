@@ -16,7 +16,6 @@ val Roboto = FontFamily(
     Font(R.font.roboto_thin, FontWeight.Thin)
 )
 
-// Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
@@ -32,13 +31,4 @@ val Typography = Typography(
         lineHeight = 40.sp,
         letterSpacing = 0.sp
     )
-/* Other default text styles to override
-labelSmall = TextStyle(
-    fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.Medium,
-    fontSize = 11.sp,
-    lineHeight = 16.sp,
-    letterSpacing = 0.5.sp
-)
-*/
 )
