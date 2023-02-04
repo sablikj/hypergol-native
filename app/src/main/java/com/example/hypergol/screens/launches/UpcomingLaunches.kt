@@ -45,7 +45,6 @@ fun UpcomingLaunchesScreen(
 ){
     val upcomingLaunches = upcomingLaunchesViewModel.upcomingLaunches.collectAsLazyPagingItems()
 
-    // Other upcoming launches
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 12.dp),
@@ -80,7 +79,7 @@ fun UpcomingLaunchesScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(6.dp),
-                            text = "T - $remainingTime",
+                            text = remainingTime,
                             color = Color.Black,
                             fontSize = MaterialTheme.typography.headlineSmall.fontSize,
                             fontWeight = FontWeight.Bold,
@@ -114,6 +113,7 @@ fun UpcomingLaunchesScreen(
                         )
                     }
                 }else{
+                    // Other upcoming launches
                     UpcomingLaunchItem(launch = launch, onDetailClicked = onDetailClicked)
                 }
             }
@@ -158,6 +158,7 @@ fun UpcomingLaunchItem(launch: Launch, onDetailClicked: (String) -> Unit){ //TOD
                     contentScale = ContentScale.Crop,
 
                 )
+                // Name, remaining time
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -188,6 +189,7 @@ fun UpcomingLaunchItem(launch: Launch, onDetailClicked: (String) -> Unit){ //TOD
                         }
                     )
                 }
+                // LSP, NET
                 Row(
                     modifier = Modifier
 
@@ -197,7 +199,7 @@ fun UpcomingLaunchItem(launch: Launch, onDetailClicked: (String) -> Unit){ //TOD
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Text(
-                        text = "${launch.launch_service_provider?.name} | ${launch.formattedNet}",
+                        text = "${launch.launch_service_provider?.name} \n${launch.formattedNet}",
                         color = MaterialTheme.colorScheme.onSecondary,
                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                         fontWeight = FontWeight.Medium
@@ -208,6 +210,7 @@ fun UpcomingLaunchItem(launch: Launch, onDetailClicked: (String) -> Unit){ //TOD
                     color = MaterialTheme.colorScheme.surface
 
                 )
+                // Orbit, Mission type
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()

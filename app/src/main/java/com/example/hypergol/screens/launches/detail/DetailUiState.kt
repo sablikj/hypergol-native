@@ -7,4 +7,5 @@ data class DetailUiState(
     val detail: LaunchDetail? = LaunchDetail()
 ) {
     val formattedNet = formatDate(detail?.net)
+    val net = detail?.net
 }
