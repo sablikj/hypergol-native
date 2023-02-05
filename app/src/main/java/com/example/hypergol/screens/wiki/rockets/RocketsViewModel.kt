@@ -1,15 +1,13 @@
-package com.example.hypergol.screens.launches
+package com.example.hypergol.screens.wiki.rockets
 
 import androidx.lifecycle.ViewModel
-import androidx.paging.ExperimentalPagingApi
 import com.example.hypergol.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@ExperimentalPagingApi
 @HiltViewModel
-class UpcomingLaunchesViewModel @Inject constructor(
+class RocketsViewModel@Inject constructor(
     repository: Repository
 ): ViewModel() {
-    val upcomingLaunches = repository.getUpcomingLaunches()
+
 }

@@ -5,10 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.*
 import com.example.hypergol.data.repository.Repository
-import com.example.hypergol.navigation.nav_graph.LaunchRoute
+import com.example.hypergol.util.Constants
+import com.example.hypergol.util.Constants.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class LaunchDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    private val launchId: String? = savedStateHandle[LaunchRoute.LAUNCH_DETAIL_ID]
+    private val launchId: String? = savedStateHandle[Routes.LAUNCH_DETAIL_ID]
     var uiState by mutableStateOf(DetailUiState())
         private set
 

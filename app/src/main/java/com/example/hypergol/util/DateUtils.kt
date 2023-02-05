@@ -17,7 +17,6 @@ fun formatDate(dateUTC: String?) : String {
 }
 
 fun getRemainingTime(date: String, longFormat: Boolean) : String {
-    Log.d("remainingInstant", date)
     if(!date.isNullOrEmpty()){
         val net = date.toInstant()
         val remaining = net.minus(Clock.System.now()).toJavaDuration()

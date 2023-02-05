@@ -1,7 +1,7 @@
 package com.example.hypergol.data.remote
 
 import com.example.hypergol.model.LaunchDetail
-import com.example.hypergol.model.UpcomingLaunchResponse
+import com.example.hypergol.model.launch.LaunchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -13,7 +13,14 @@ interface LaunchApi {
     suspend fun getUpcomingLaunches(
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
-    ): UpcomingLaunchResponse
+    ): LaunchResponse
+
+    // All launches
+    @GET("launch/?mode=detailed&format=json")
+    suspend fun getLaunches(
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
+    ): LaunchResponse
 
     // Launch detail
     @GET("launch/{id}/?mode=detailed&format=json")

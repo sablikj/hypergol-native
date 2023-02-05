@@ -1,4 +1,6 @@
-package com.example.hypergol
+package com.example.hypergol.navigation
+
+import com.example.hypergol.R
 
 sealed class BottomBarScreen(
     val route: String,

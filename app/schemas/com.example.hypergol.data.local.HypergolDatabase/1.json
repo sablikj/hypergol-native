@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e7707beee655377775bc186a7b256cf5",
+    "identityHash": "f47b29a35ca67d36942e5f2caa1e1555",
     "entities": [
       {
-        "tableName": "upcoming_launches_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`upcoming_launch_id` TEXT NOT NULL, `upcoming_launch_name` TEXT NOT NULL, `net` TEXT, `image` TEXT NOT NULL, `status_name` TEXT, `status_description` TEXT, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_count` INTEGER, `successful_launches` INTEGER, `failed_launches` INTEGER, `launch_provider_image` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `rocket_description` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `geo_capacity` INTEGER, `rocket_image` TEXT, `rocket_count` INTEGER, `manufacturer_name` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_description` TEXT, `mission_designator` TEXT, `mission_type` TEXT, `orbit_name` TEXT, `pad_id` INTEGER, `pad_url` TEXT, `agency_id` INTEGER, `pad_name` TEXT, `map_image` TEXT, `pad_launch_count` INTEGER, `pad_location_name` TEXT, `country_code` TEXT, PRIMARY KEY(`upcoming_launch_id`))",
+        "tableName": "launch_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`upcoming_launch_id` TEXT NOT NULL, `upcoming_launch_name` TEXT NOT NULL, `net` TEXT, `formattedNet` TEXT, `image` TEXT NOT NULL, `status_name` TEXT, `status_description` TEXT, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_count` INTEGER, `successful_launches` INTEGER, `failed_launches` INTEGER, `launch_provider_image` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `rocket_description` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `geo_capacity` INTEGER, `rocket_image` TEXT, `rocket_count` INTEGER, `manufacturer_name` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_description` TEXT, `mission_designator` TEXT, `mission_type` TEXT, `orbit_name` TEXT, `pad_id` INTEGER, `pad_url` TEXT, `agency_id` INTEGER, `pad_name` TEXT, `map_image` TEXT, `pad_launch_count` INTEGER, `pad_location_name` TEXT, `country_code` TEXT, PRIMARY KEY(`upcoming_launch_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -23,6 +23,12 @@
           {
             "fieldPath": "net",
             "columnName": "net",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "formattedNet",
+            "columnName": "formattedNet",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -621,12 +627,44 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "upcoming_launch_remote_keys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `prevOffset` INTEGER, `nextOffset` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevOffset",
+            "columnName": "prevOffset",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextOffset",
+            "columnName": "nextOffset",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e7707beee655377775bc186a7b256cf5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f47b29a35ca67d36942e5f2caa1e1555')"
     ]
   }
 }

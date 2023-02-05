@@ -7,17 +7,18 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.hypergol.data.local.HypergolDatabase
 import com.example.hypergol.data.remote.LaunchApi
-import com.example.hypergol.model.LaunchRemoteKeys
-import com.example.hypergol.model.Launch
+import com.example.hypergol.model.launch.Launch
+import com.example.hypergol.model.launch.LaunchRemoteKeys
+import com.example.hypergol.model.launch.UpcomingLaunchRemoteKeys
 import com.example.hypergol.util.Constants.ITEMS_PER_PAGE
 
 @ExperimentalPagingApi
-class HypergolRemoteMediator(
+class LaunchRemoteMediator(
     private val launchApi: LaunchApi,
     private val hypergolDatabase: HypergolDatabase
 ) : RemoteMediator<Int, Launch>() {
 
-    private val upcomingLaunchDao = hypergolDatabase.upcomingLaunchDao()
+    private val launchDao = hypergolDatabase.launchDao()
     private val launchRemoteKeysDao = hypergolDatabase.launchRemoteKeysDao()
 
     override suspend fun load(
@@ -51,7 +52,7 @@ class HypergolRemoteMediator(
                 }
             }
 
-            val response = launchApi.getUpcomingLaunches(offset = currentOffset, limit = ITEMS_PER_PAGE)
+            val response = launchApi.getLaunches(offset = currentOffset, limit = ITEMS_PER_PAGE)
             val launches = response.results
             val endOfPaginationReached = launches.isEmpty()
 
@@ -61,18 +62,18 @@ class HypergolRemoteMediator(
 
             hypergolDatabase.withTransaction {
                 if(loadType == LoadType.REFRESH){
-                    upcomingLaunchDao.deleteAllUpcomingLaunches()
+                    launchDao.deleteAllUpcomingLaunches()
                     launchRemoteKeysDao.deleteAllRemoteKeys()
                 }
-                val keys = launches.map { upcomingLaunch ->
+                val keys = launches.map { launch ->
                     LaunchRemoteKeys(
-                        id = upcomingLaunch.id,
+                        id = launch.id,
                         prevOffset = prevPage,
                         nextOffset = nextPage
                     )
                 }
                 launchRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)
-                upcomingLaunchDao.addUpcomingLaunches(launches = launches)
+                launchDao.addLaunches(launches = launches)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception){

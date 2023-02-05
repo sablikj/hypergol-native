@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,9 +20,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
+import com.example.hypergol.navigation.BottomBarScreen
 import com.example.hypergol.navigation.nav_graph.BottomNavGraph
 
 
+@ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalPagingApi
 @Composable
@@ -36,7 +39,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()){
                         color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 },
-                colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary) //TopAppBarDefaults.smallTopAppBarColors(containerColor = colorResource(id = R.color.Primary))
+                colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary)
             )
         },
         bottomBar = { BottomBar(navController = navController) }
@@ -101,12 +104,4 @@ fun RowScope.AddItem(
             }
         }
     )
-}
-
-@ExperimentalPagingApi
-@ExperimentalCoilApi
-@Preview
-@Composable
-fun MainScreenPreview(){
-    MainScreen()
 }
