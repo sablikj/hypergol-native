@@ -1,6 +1,8 @@
 package com.example.hypergol.data.remote
 
 import com.example.hypergol.model.LaunchDetail
+import com.example.hypergol.model.common.Agency
+import com.example.hypergol.model.common.AgencyResponse
 import com.example.hypergol.model.launch.LaunchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -28,5 +30,16 @@ interface LaunchApi {
         @Path("id") id: String
     ): LaunchDetail
 
+    // All agencies
+    @GET("agencies/?mode=detailed&format=json&featured=true")
+    suspend fun getAgencies(
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
+    ): AgencyResponse
 
+    // Agency detail
+    @GET("agencies/{id}/?mode=detailed&format=json&featured=true")
+    suspend fun getAgency(
+        @Path("id") id: Int
+    ): Agency
 }

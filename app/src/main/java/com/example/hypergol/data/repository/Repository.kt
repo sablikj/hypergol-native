@@ -6,11 +6,13 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.hypergol.data.local.HypergolDatabase
+import com.example.hypergol.data.paging.AgencyRemoteMediator
 import com.example.hypergol.data.paging.LaunchRemoteMediator
 import com.example.hypergol.data.paging.UpcomingLaunchRemoteMediator
 import com.example.hypergol.data.remote.LaunchApi
 import com.example.hypergol.model.launch.Launch
 import com.example.hypergol.model.LaunchDetail
+import com.example.hypergol.model.common.Agency
 import com.example.hypergol.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -56,6 +58,32 @@ class Repository  @Inject constructor(
             hypergolDatabase.launchDetailDao().insert(launch)
         }catch (e: Exception){
             Log.d("ErrorLaunchDetail", e.toString())
+        }
+    }
+
+    // Agency
+    @ExperimentalPagingApi
+    fun getAgencies(): Flow<PagingData<Agency>> {
+        val pagingSourceFactory = { hypergolDatabase.agencyDao().getAgencies() }
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            remoteMediator = AgencyRemoteMediator(
+                launchApi = launchApi,
+                hypergolDatabase = hypergolDatabase
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
+    }
+
+    fun getAgencyDetail(agencyId: Int): Flow<Agency?> =
+        hypergolDatabase.agencyDao().getAgencyDetail(agencyId)
+
+    suspend fun refreshAgencyDetail(id: Int) {
+        try {
+            val agency: Agency = launchApi.getAgency(id)
+            hypergolDatabase.agencyDao().insert(agency)
+        }catch (e: Exception){
+            Log.d("Error", e.toString())
         }
     }
 }

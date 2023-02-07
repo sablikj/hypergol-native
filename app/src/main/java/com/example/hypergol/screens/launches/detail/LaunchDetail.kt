@@ -35,7 +35,6 @@ fun LaunchDetail()
 {
     val viewModel = hiltViewModel<LaunchDetailViewModel>()
     val uiState = viewModel.uiState
-    Log.d("remaining", uiState.detail?.net.toString())
 
     val launchPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)

@@ -1,7 +1,7 @@
 package com.example.hypergol.util
 
-import android.annotation.SuppressLint
-import android.util.Log
+import androidx.paging.PagingData
+import com.example.hypergol.model.launch.Launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.toInstant
 import java.text.SimpleDateFormat
@@ -14,6 +14,10 @@ fun formatDate(dateUTC: String?) : String {
     val date = SimpleDateFormat("yyyy-mm-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse(dateUTC)
     val newFormat = SimpleDateFormat("dd/MM/yyy HH:mm", Locale.getDefault())
     return date?.let { newFormat.format(it) }.orEmpty()
+}
+
+fun isUpcoming(launch: String): Boolean{
+    return launch.toInstant() > Clock.System.now()
 }
 
 fun getRemainingTime(date: String, longFormat: Boolean) : String {

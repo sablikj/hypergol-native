@@ -8,10 +8,12 @@ object Constants {
     // Object tables
     const val LAUNCH_TABLE = "launch_table"
     const val LAUNCH_DETAIL_TABLE = "launch_detail_table"
+    const val AGENCY_TABLE = "launch_service_provider"
 
     // Key tables
     const val UPCOMING_LAUNCH_REMOTE_KEYS_TABLE = "upcoming_launch_remote_keys"
     const val LAUNCH_REMOTE_KEYS_TABLE = "launch_remote_keys"
+    const val AGENCY_REMOTE_KEYS_TABLE = "agency_remote_keys"
 
     const val DATABASE_NAME = "hypergol_database"
 
@@ -22,13 +24,17 @@ object Constants {
 
     object Routes {
         // Main routes
-        const val LAUNCH_DETAIL_ROUTE = "launch"
         const val WIKI_LAUNCHES_ROUTE = "wiki/launches"
         const val WIKI_ROCKETS_ROUTE = "wiki/rockets"
-        const val WIKI_LSP_ROUTE = "wiki/lsp"
+        const val WIKI_LSP_ROUTE = "wiki/agency"
         const val WIKI_ASTRONAUTS_ROUTE = "wiki/astronauts"
 
-        // Detail routes
+        const val LAUNCH_DETAIL_ROUTE = "launch"
+        const val LSP_DETAIL_ROUTE = "agency"
+        const val ROCKET_DETAIL_ROUTE = "rocket"
+        const val ASTRONAUT_DETAIL_ROUTE = "astronaut"
+
+        // Detail keys
         const val LAUNCH_DETAIL_ID = "launchId"
         const val ROCKET_DETAIL_ID = "rocketId"
         const val LSP_DETAIL_ID = "lspId"

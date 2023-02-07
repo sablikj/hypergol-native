@@ -2,8 +2,9 @@ package com.example.hypergol.model
 
 import androidx.room.*
 import com.example.hypergol.model.common.*
+import com.example.hypergol.model.common.Agency
+import com.example.hypergol.model.common.Rocket
 import com.example.hypergol.util.Constants
-import com.example.hypergol.util.Converters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,7 +26,7 @@ data class LaunchDetail(
     val window_end: String? = "",
     val window_start: String? = "",
     @Embedded
-    val launch_service_provider: LaunchProvider? = LaunchProvider(),
+    val launch_service_provider: Agency? = Agency(),
     @Embedded
     val rocket: Rocket? = Rocket(),
     @Embedded
