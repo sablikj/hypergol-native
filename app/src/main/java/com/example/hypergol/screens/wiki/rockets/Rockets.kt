@@ -23,12 +23,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.hypergol.R
 import com.example.hypergol.model.launch.Launch
+import com.example.hypergol.screens.common.RocketItem
 
-@OptIn(ExperimentalMaterialApi::class)
+@ExperimentalMaterialApi
+@ExperimentalCoilApi
 @ExperimentalPagingApi
 @Composable
 fun RocketsScreen(rocketsViewModel: RocketsViewModel = hiltViewModel(),
@@ -45,7 +48,8 @@ fun RocketsScreen(rocketsViewModel: RocketsViewModel = hiltViewModel(),
         ){
                 i, rocket ->
             rocket?.let {
-
+                RocketItem(rocket = rocket, onDetailClicked = onRocketDetail)
+                /*
                 val imagePainter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(rocket.image_url)
@@ -154,7 +158,7 @@ fun RocketsScreen(rocketsViewModel: RocketsViewModel = hiltViewModel(),
                             }
                         }
                     }
-                }
+                } */
             }
         }
     }

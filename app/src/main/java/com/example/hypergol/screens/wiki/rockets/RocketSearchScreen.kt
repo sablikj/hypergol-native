@@ -1,4 +1,4 @@
-package com.example.hypergol.screens.wiki.launches
+package com.example.hypergol.screens.wiki.rockets
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,6 +20,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import coil.annotation.ExperimentalCoilApi
 import com.example.hypergol.screens.common.LaunchItem
+import com.example.hypergol.screens.common.RocketItem
 import com.example.hypergol.screens.common.SearchWidget
 
 @SuppressLint("UnrememberedMutableState")
@@ -25,13 +28,13 @@ import com.example.hypergol.screens.common.SearchWidget
 @ExperimentalPagingApi
 @ExperimentalCoilApi
 @Composable
-fun LaunchSearchScreen(
-    onDetailClicked: (String) -> Unit,
+fun RocketSearchScreen(
+    onDetailClicked: (Int) -> Unit,
     navController: NavHostController,
-    launchesViewModel: LaunchesViewModel = hiltViewModel()
+    rocketsViewModel: RocketsViewModel = hiltViewModel()
 ) {
-    var searchQuery by launchesViewModel.searchQuery
-    val results = launchesViewModel.searchedLaunches.collectAsLazyPagingItems()
+    var searchQuery by rocketsViewModel.searchQuery
+    val results = rocketsViewModel.searchedRockets.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = {
@@ -41,7 +44,7 @@ fun LaunchSearchScreen(
                     searchQuery = it
                 },
                 onSearchClicked = {
-                    launchesViewModel.searchLaunches(query = it)
+                    rocketsViewModel.searchRockets(query = it)
                 }
             ) {
                 navController.popBackStack()
@@ -57,9 +60,9 @@ fun LaunchSearchScreen(
             ){
                 itemsIndexed(results
                 ){
-                        i, launch ->
-                    launch?.let {
-                        LaunchItem(launch = launch, onDetailClicked = onDetailClicked, upcoming = false)
+                        i, rocket ->
+                    rocket?.let {
+                        RocketItem(rocket = rocket, onDetailClicked = onDetailClicked)
                     }
                 }
             }

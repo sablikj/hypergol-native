@@ -1,6 +1,5 @@
 package com.example.hypergol.screens.wiki
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -84,7 +83,7 @@ fun WikiScreen(navController: NavHostController) {
             }
         }
         Card(
-            onClick = { navController.navigate(Routes.WIKI_LSP_ROUTE) },
+            onClick = { navController.navigate(Routes.WIKI_AGENCY_ROUTE) },
             modifier = Modifier
                 .padding(6.dp)
                 .fillMaxWidth()

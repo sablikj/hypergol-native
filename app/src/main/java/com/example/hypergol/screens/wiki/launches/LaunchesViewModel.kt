@@ -24,7 +24,7 @@ class LaunchesViewModel @Inject constructor(
     val searchQuery = mutableStateOf("")
 
     private val _searchedLaunches = MutableStateFlow<PagingData<Launch>>(PagingData.empty())
-    val searchedImages = _searchedLaunches
+    val searchedLaunches = _searchedLaunches
 
     fun searchLaunches(query: String) {
         viewModelScope.launch {

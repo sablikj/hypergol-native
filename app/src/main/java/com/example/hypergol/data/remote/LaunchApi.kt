@@ -39,6 +39,8 @@ interface LaunchApi {
         @Query("limit") limit: Int
     ): LaunchResponse
 
+    // Agencies
+
     // All agencies
     @GET("agencies/?mode=detailed&format=json&featured=true")
     suspend fun getAgencies(
@@ -52,6 +54,15 @@ interface LaunchApi {
         @Path("id") id: Int
     ): Agency
 
+    // Agency search
+    @GET("agencies/?mode=detailed&format=json&featured=true")
+    suspend fun searchAgencies(
+        @Query("search") query: String,
+        @Query("limit") limit: Int
+    ): AgencyResponse
+
+    // Rockets
+
     // All rockets
     @GET("config/launcher/?mode=detailed&format=json")
     suspend fun getRockets(
@@ -64,4 +75,11 @@ interface LaunchApi {
     suspend fun getRocket(
         @Path("id") id: Int
     ): Rocket
+
+    // Rocket search
+    @GET("config/launcher/?mode=detailed&format=json")
+    suspend fun searchRockets(
+        @Query("search") query: String,
+        @Query("limit") limit: Int
+    ): RocketResponse
 }

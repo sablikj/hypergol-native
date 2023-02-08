@@ -10,7 +10,9 @@ import com.example.hypergol.data.paging.AgencyRemoteMediator
 import com.example.hypergol.data.paging.LaunchRemoteMediator
 import com.example.hypergol.data.paging.RocketRemoteMediator
 import com.example.hypergol.data.paging.UpcomingLaunchRemoteMediator
+import com.example.hypergol.data.paging.search.AgencySearchPagingSource
 import com.example.hypergol.data.paging.search.LaunchSearchPagingSource
+import com.example.hypergol.data.paging.search.RocketSearchPagingSource
 import com.example.hypergol.data.remote.LaunchApi
 import com.example.hypergol.model.launch.Launch
 import com.example.hypergol.model.launch.LaunchDetail
@@ -100,6 +102,15 @@ class Repository  @Inject constructor(
         }
     }
 
+    fun searchAgencies(query: String): Flow<PagingData<Agency>> {
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            pagingSourceFactory = {
+                AgencySearchPagingSource(launchApi = launchApi, query = query)
+            }
+        ).flow
+    }
+
     // Rocket
     @ExperimentalPagingApi
     fun getRockets(): Flow<PagingData<Rocket>> {
@@ -124,5 +135,14 @@ class Repository  @Inject constructor(
         }catch (e: Exception){
             Log.d("Error", e.toString())
         }
+    }
+
+    fun searchRockets(query: String): Flow<PagingData<Rocket>> {
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            pagingSourceFactory = {
+                RocketSearchPagingSource(launchApi = launchApi, query = query)
+            }
+        ).flow
     }
 }

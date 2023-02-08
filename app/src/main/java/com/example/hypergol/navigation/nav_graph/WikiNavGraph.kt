@@ -1,6 +1,5 @@
 package com.example.hypergol.navigation.nav_graph
 
-import android.util.Log
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavGraphBuilder
@@ -12,12 +11,13 @@ import androidx.navigation.navArgument
 import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
 import com.example.hypergol.navigation.BottomBarScreen
-import com.example.hypergol.screens.launches.detail.LaunchDetail
+import com.example.hypergol.screens.wiki.agency.AgencySearchScreen
 import com.example.hypergol.screens.wiki.astronauts.AstronautsScreen
 import com.example.hypergol.screens.wiki.launches.LaunchesScreen
 import com.example.hypergol.screens.wiki.agency.LspScreen
 import com.example.hypergol.screens.wiki.agency.detail.AgencyDetailScreen
 import com.example.hypergol.screens.wiki.launches.LaunchSearchScreen
+import com.example.hypergol.screens.wiki.rockets.RocketSearchScreen
 import com.example.hypergol.screens.wiki.rockets.RocketsScreen
 import com.example.hypergol.screens.wiki.rockets.detail.RocketDetailScreen
 import com.example.hypergol.util.Constants.Graph
@@ -51,10 +51,9 @@ fun NavGraphBuilder.wikiNavGraph(navController: NavHostController) {
             )
         }
         // LSP / Agency
-        composable(route = Routes.WIKI_LSP_ROUTE) { backStackEntry ->
+        composable(route = Routes.WIKI_AGENCY_ROUTE) { backStackEntry ->
             LspScreen(
                 onAgencyDetail = { lspID ->
-                    Log.d("wtf", lspID.toString())
                     if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
                         navController.navigate("${Routes.LSP_DETAIL_ROUTE}/$lspID")
                     }
@@ -105,6 +104,30 @@ fun NavGraphBuilder.wikiNavGraph(navController: NavHostController) {
                     // To avoid duplicate navigation events
                     if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
                         navController.navigate("${Routes.LAUNCH_DETAIL_ROUTE}/$launchId")
+                    }
+                }
+            )
+        }
+
+        // Agency search
+        composable(route = Routes.AGENCY_SEARCH_ROUTE){backStackEntry ->
+            AgencySearchScreen(
+                navController = navController,
+                onDetailClicked = { agencyId ->
+                    if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                        navController.navigate("${Routes.LSP_DETAIL_ROUTE}/$agencyId")
+                    }
+                }
+            )
+        }
+
+        // Rocket search
+        composable(route = Routes.ROCKET_SEARCH_ROUTE){backStackEntry ->
+            RocketSearchScreen(
+                navController = navController,
+                onDetailClicked = { rocketId ->
+                    if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                        navController.navigate("${Routes.ROCKET_DETAIL_ROUTE}/$rocketId")
                     }
                 }
             )

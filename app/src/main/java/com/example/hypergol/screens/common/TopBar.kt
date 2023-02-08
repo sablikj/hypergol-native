@@ -14,7 +14,7 @@ fun TopBar(
         title = {
             Text(
                 text = text,
-                color = MaterialTheme.colorScheme.onPrimary
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary),

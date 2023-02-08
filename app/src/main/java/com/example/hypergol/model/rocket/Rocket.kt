@@ -36,4 +36,8 @@ data class Rocket (
 )
 
 @Serializable
-data class RocketResponse(val results: List<Rocket>)
+data class RocketResponse(val results: List<Rocket>, val count: Int = 0) {
+    fun distinct(): List<Rocket> {
+        return results.take(count)
+    }
+}

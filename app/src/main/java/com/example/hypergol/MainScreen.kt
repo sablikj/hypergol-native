@@ -46,7 +46,29 @@ fun MainScreen(navController: NavHostController){
                         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary)
                     )
                 }
-                "launch", "agency", "rocket" -> {
+                Routes.WIKI_LAUNCHES_ROUTE -> {
+                   TopBar(text = "Rocket Launches",
+                       onSearchClicked = {
+                           navController.navigate(Routes.LAUNCH_SEARCH_ROUTE)
+                       }
+                   )
+                }
+                Routes.WIKI_AGENCY_ROUTE -> {
+                    TopBar(text = "Launch Providers",
+                        onSearchClicked = {
+                            navController.navigate(Routes.AGENCY_SEARCH_ROUTE)
+                        }
+                    )
+                }
+                Routes.WIKI_ROCKETS_ROUTE -> {
+                    TopBar(text = "Rockets",
+                        onSearchClicked = {
+                            navController.navigate(Routes.ROCKET_SEARCH_ROUTE)
+                        }
+                    )
+                }
+                "searchLaunch", "searchRocket", "searchAgency" -> {}
+                else -> {
                     CenterAlignedTopAppBar(
                         title = {
                             Text(
@@ -57,13 +79,6 @@ fun MainScreen(navController: NavHostController){
                         },
                         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary)
                     )
-                }
-                Routes.WIKI_LAUNCHES_ROUTE -> {
-                   TopBar(text = "Rocket Launches",
-                       onSearchClicked = {
-                           navController.navigate(Routes.LAUNCH_SEARCH_ROUTE)
-                       }
-                   )
                 }
             }
         },

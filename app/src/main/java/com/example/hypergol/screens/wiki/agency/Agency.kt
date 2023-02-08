@@ -26,12 +26,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImagePainter.State.Empty.painter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.hypergol.R
+import com.example.hypergol.screens.common.AgencyItem
 
-@OptIn(ExperimentalMaterialApi::class)
+@ExperimentalMaterialApi
+@ExperimentalCoilApi
 @ExperimentalPagingApi
 @Composable
 fun LspScreen(agencyViewModel: AgencyViewModel = hiltViewModel(),
@@ -49,6 +52,8 @@ fun LspScreen(agencyViewModel: AgencyViewModel = hiltViewModel(),
         ){
                 i, agency ->
             agency?.let {
+                AgencyItem(agency = agency, onDetailClicked = onAgencyDetail)
+                /*
                 val imagePainter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(agency.image_url)
@@ -172,7 +177,7 @@ fun LspScreen(agencyViewModel: AgencyViewModel = hiltViewModel(),
                             }
                         }
                     }
-                }
+                } */
             }
         }
     }

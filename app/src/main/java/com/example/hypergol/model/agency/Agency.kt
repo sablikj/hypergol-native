@@ -3,6 +3,7 @@ package com.example.hypergol.model.common
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.hypergol.model.launch.Launch
 import com.example.hypergol.util.Constants.AGENCY_TABLE
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -49,4 +50,8 @@ data class Agency(
 )
 
 @Serializable
-data class AgencyResponse(val results: List<Agency>)
+data class AgencyResponse(val results: List<Agency>, val count: Int = 0) {
+    fun distinct(): List<Agency> {
+        return results.take(count)
+    }
+}

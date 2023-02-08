@@ -56,12 +56,12 @@ fun SearchWidget(
                     modifier = Modifier
                         .alpha(alpha = ContentAlpha.medium),
                     text = "Search here...",
-                    color = MaterialTheme.colorScheme.onPrimary,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontSize = 14.sp
                 )
             },
             textStyle = TextStyle(
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 fontSize = 14.sp
             ),
             singleLine = true,
@@ -74,7 +74,7 @@ fun SearchWidget(
                     Icon(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Search Icon",
-                        tint = MaterialTheme.colorScheme.onPrimary
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
             },
@@ -95,7 +95,7 @@ fun SearchWidget(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Close Icon",
-                        tint = MaterialTheme.colorScheme.onPrimary
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
             },
@@ -111,7 +111,7 @@ fun SearchWidget(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 containerColor = Color.Transparent,
-                cursorColor = MaterialTheme.colorScheme.onPrimary
+                cursorColor = MaterialTheme.colorScheme.onPrimaryContainer
             )
         )
     }

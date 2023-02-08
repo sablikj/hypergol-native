@@ -28,7 +28,7 @@ object Constants {
         // Main routes
         const val WIKI_LAUNCHES_ROUTE = "wiki/launches"
         const val WIKI_ROCKETS_ROUTE = "wiki/rockets"
-        const val WIKI_LSP_ROUTE = "wiki/agency"
+        const val WIKI_AGENCY_ROUTE = "wiki/agency"
         const val WIKI_ASTRONAUTS_ROUTE = "wiki/astronauts"
 
         const val LAUNCH_DETAIL_ROUTE = "launch"
