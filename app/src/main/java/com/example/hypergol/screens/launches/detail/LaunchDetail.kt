@@ -1,6 +1,5 @@
 package com.example.hypergol.screens.launches.detail
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -23,10 +22,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.hypergol.R
 import com.example.hypergol.util.getRemainingTime
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
-import okhttp3.internal.wait
 import kotlin.time.Duration.Companion.seconds
 
 
@@ -130,7 +126,6 @@ fun LaunchDetail()
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-
                             .background(MaterialTheme.colorScheme.primary),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
@@ -460,14 +455,14 @@ fun LaunchDetail()
                             ){
                                 Text(
                                     modifier = Modifier.padding(6.dp),
-                                    text = "GEO capacity",
+                                    text = "GTO capacity",
                                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                                     fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                     fontWeight = FontWeight.Bold
                                 )
                                 Text(
                                     modifier = Modifier.padding(6.dp),
-                                    text = uiState.detail?.rocket?.configuration?.geo_capacity.toString() + " kg",
+                                    text = uiState.detail?.rocket?.configuration?.gto_capacity.toString() + " kg",
                                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                                     fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                     fontWeight = FontWeight.Normal

@@ -7,9 +7,11 @@ import com.example.hypergol.data.local.dao.*
 import com.example.hypergol.model.agency.AgencyRemoteKeys
 import com.example.hypergol.model.launch.LaunchRemoteKeys
 import com.example.hypergol.model.launch.Launch
-import com.example.hypergol.model.LaunchDetail
+import com.example.hypergol.model.launch.LaunchDetail
 import com.example.hypergol.model.common.Agency
 import com.example.hypergol.model.launch.UpcomingLaunchRemoteKeys
+import com.example.hypergol.model.rocket.Rocket
+import com.example.hypergol.model.rocket.RocketRemoteKeys
 import com.example.hypergol.util.Converters
 
 
@@ -21,7 +23,9 @@ import com.example.hypergol.util.Converters
         LaunchDetail::class,
         UpcomingLaunchRemoteKeys::class,
         Agency::class,
-        AgencyRemoteKeys::class
+        AgencyRemoteKeys::class,
+        RocketRemoteKeys::class,
+        Rocket::class
                ],
     version = 1,/*
     autoMigrations = [
@@ -33,9 +37,11 @@ abstract class HypergolDatabase : RoomDatabase()  {
     abstract fun launchDao(): LaunchDao
     abstract fun launchDetailDao(): LaunchDetailDao
     abstract fun agencyDao(): AgencyDao
+    abstract fun rocketDetailDao(): RocketDao
 
     // Keys
     abstract fun upcomingLaunchRemoteKeysDao(): UpcomingLaunchRemoteKeysDao
     abstract fun launchRemoteKeysDao(): LaunchRemoteKeysDao
     abstract fun agencyRemoteKeysDao(): AgencyRemoteKeysDao
+    abstract fun rocketRemoteKeysDao(): RocketRemoteKeysDao
 }

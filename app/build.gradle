@@ -121,6 +121,9 @@ dependencies {
 
     // Retrofit logging
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
+
+    // Shimmer
+    implementation 'com.valentinilk.shimmer:compose-shimmer:1.0.4'
 }
 
 // Allow references to generated code

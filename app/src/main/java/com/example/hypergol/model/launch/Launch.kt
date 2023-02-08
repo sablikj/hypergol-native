@@ -2,7 +2,7 @@ package com.example.hypergol.model.launch
 
 import androidx.room.*
 import com.example.hypergol.model.common.*
-import com.example.hypergol.model.common.Rocket
+import com.example.hypergol.model.common.LaunchRocket
 import com.example.hypergol.util.Constants.LAUNCH_TABLE
 import com.example.hypergol.util.formatDate
 import kotlinx.serialization.SerialName
@@ -20,11 +20,11 @@ data class Launch(
     @Embedded
     val status: Status?,
     val net: String?,
-    val formattedNet: String? = formatDate(net),
+    val formattedNet: String? = formatDate(net, false),
     @Embedded
     val launch_service_provider: Agency?,
     @Embedded
-    val rocket: Rocket?,
+    val rocket: LaunchRocket?,
     @Embedded
     val mission: Mission?,
     @Embedded

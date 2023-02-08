@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "eaf8e579cd833c33a155b9f92098efb0",
+    "identityHash": "40fdbe8b1ce1b5448f85f6b17ab7e59a",
     "entities": [
       {
         "tableName": "launch_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`upcoming_launch_id` TEXT NOT NULL, `upcoming_launch_name` TEXT NOT NULL, `net` TEXT, `formattedNet` TEXT, `image` TEXT NOT NULL, `status_name` TEXT, `status_description` TEXT, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_country` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_launchers` TEXT, `launch_provider_spacecraft` TEXT, `launch_provider_count` INTEGER, `launch_provider_launches_success` INTEGER, `launch_provider_launches_fail` INTEGER, `launch_provider_landing_success` INTEGER, `launch_provider_landing_fail` INTEGER, `launch_provider_image` TEXT, `launch_provider_logo` TEXT, `launch_provider_info` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `rocket_description` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `geo_capacity` INTEGER, `rocket_image` TEXT, `rocket_count` INTEGER, `manufacturer_name` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_description` TEXT, `mission_designator` TEXT, `mission_type` TEXT, `orbit_name` TEXT, `pad_id` INTEGER, `pad_url` TEXT, `agency_id` INTEGER, `pad_name` TEXT, `map_image` TEXT, `pad_launch_count` INTEGER, `pad_location_name` TEXT, `country_code` TEXT, PRIMARY KEY(`upcoming_launch_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`upcoming_launch_id` TEXT NOT NULL, `upcoming_launch_name` TEXT NOT NULL, `net` TEXT, `formattedNet` TEXT, `image` TEXT NOT NULL, `status_name` TEXT, `status_description` TEXT, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_country` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_launchers` TEXT, `launch_provider_spacecraft` TEXT, `launch_provider_count` INTEGER, `launch_provider_launches_success` INTEGER, `launch_provider_launches_fail` INTEGER, `launch_provider_landing_success` INTEGER, `launch_provider_landing_fail` INTEGER, `launch_provider_image` TEXT, `launch_provider_logo` TEXT, `launch_provider_info` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `rocket_description` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `gto_capacity` INTEGER, `rocket_image` TEXT, `rocket_count` INTEGER, `manufacturer_name` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_description` TEXT, `mission_designator` TEXT, `mission_type` TEXT, `orbit_name` TEXT, `pad_id` INTEGER, `pad_url` TEXT, `agency_id` INTEGER, `pad_name` TEXT, `map_image` TEXT, `pad_launch_count` INTEGER, `pad_location_name` TEXT, `country_code` TEXT, PRIMARY KEY(`upcoming_launch_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -219,8 +219,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "rocket.configuration.geo_capacity",
-            "columnName": "geo_capacity",
+            "fieldPath": "rocket.configuration.gto_capacity",
+            "columnName": "gto_capacity",
             "affinity": "INTEGER",
             "notNull": false
           },
@@ -370,7 +370,7 @@
       },
       {
         "tableName": "launch_detail_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`launch_detail_id` TEXT NOT NULL, `url` TEXT, `launch_detail_name` TEXT, `net` TEXT, `window_end` TEXT, `window_start` TEXT, `image_url` TEXT, `status_name` TEXT, `status_description` TEXT, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_country` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_launchers` TEXT, `launch_provider_spacecraft` TEXT, `launch_provider_count` INTEGER, `launch_provider_launches_success` INTEGER, `launch_provider_launches_fail` INTEGER, `launch_provider_landing_success` INTEGER, `launch_provider_landing_fail` INTEGER, `launch_provider_image` TEXT, `launch_provider_logo` TEXT, `launch_provider_info` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `rocket_description` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `geo_capacity` INTEGER, `rocket_image` TEXT, `rocket_count` INTEGER, `manufacturer_name` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_description` TEXT, `mission_designator` TEXT, `mission_type` TEXT, `orbit_name` TEXT, `pad_id` INTEGER, `pad_url` TEXT, `agency_id` INTEGER, `pad_name` TEXT, `map_image` TEXT, `pad_launch_count` INTEGER, `pad_location_name` TEXT, `country_code` TEXT, PRIMARY KEY(`launch_detail_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`launch_detail_id` TEXT NOT NULL, `url` TEXT, `launch_detail_name` TEXT, `net` TEXT, `window_end` TEXT, `window_start` TEXT, `image_url` TEXT, `status_name` TEXT, `status_description` TEXT, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_country` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_launchers` TEXT, `launch_provider_spacecraft` TEXT, `launch_provider_count` INTEGER, `launch_provider_launches_success` INTEGER, `launch_provider_launches_fail` INTEGER, `launch_provider_landing_success` INTEGER, `launch_provider_landing_fail` INTEGER, `launch_provider_image` TEXT, `launch_provider_logo` TEXT, `launch_provider_info` TEXT, `rocket_id` INTEGER, `rocket_config_id` INTEGER, `rocket_name` TEXT, `family` TEXT, `full_name` TEXT, `variant` TEXT, `rocket_description` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `gto_capacity` INTEGER, `rocket_image` TEXT, `rocket_count` INTEGER, `manufacturer_name` TEXT, `mission_id` INTEGER, `mission_name` TEXT, `mission_description` TEXT, `mission_designator` TEXT, `mission_type` TEXT, `orbit_name` TEXT, `pad_id` INTEGER, `pad_url` TEXT, `agency_id` INTEGER, `pad_name` TEXT, `map_image` TEXT, `pad_launch_count` INTEGER, `pad_location_name` TEXT, `country_code` TEXT, PRIMARY KEY(`launch_detail_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -595,8 +595,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "rocket.configuration.geo_capacity",
-            "columnName": "geo_capacity",
+            "fieldPath": "rocket.configuration.gto_capacity",
+            "columnName": "gto_capacity",
             "affinity": "INTEGER",
             "notNull": false
           },
@@ -891,12 +891,256 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "rocket_remote_keys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `prevOffset` INTEGER, `nextOffset` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevOffset",
+            "columnName": "prevOffset",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextOffset",
+            "columnName": "nextOffset",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "rocket_detail_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `active` INTEGER NOT NULL, `reusable` INTEGER NOT NULL, `description` TEXT, `family` TEXT, `full_name` TEXT, `length` REAL, `diameter` REAL, `launch_cost` TEXT, `leo_capacity` INTEGER, `gto_capacity` INTEGER, `maiden_flight` TEXT, `rocket_image` TEXT, `rocket_detail_launches_success` INTEGER, `rocket_detail_launches_fail` INTEGER, `launch_provider_id` INTEGER, `launch_provider_name` TEXT, `launch_provider_type` TEXT, `launch_provider_country` TEXT, `launch_provider_description` TEXT, `launch_provider_administrator` TEXT, `founding_year` INTEGER, `launch_provider_launchers` TEXT, `launch_provider_spacecraft` TEXT, `launch_provider_count` INTEGER, `launch_provider_launches_success` INTEGER, `launch_provider_launches_fail` INTEGER, `launch_provider_landing_success` INTEGER, `launch_provider_landing_fail` INTEGER, `launch_provider_image` TEXT, `launch_provider_logo` TEXT, `launch_provider_info` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "active",
+            "columnName": "active",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reusable",
+            "columnName": "reusable",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "family",
+            "columnName": "family",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "full_name",
+            "columnName": "full_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "length",
+            "columnName": "length",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "diameter",
+            "columnName": "diameter",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "launch_cost",
+            "columnName": "launch_cost",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "leo_capacity",
+            "columnName": "leo_capacity",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gto_capacity",
+            "columnName": "gto_capacity",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "maiden_flight",
+            "columnName": "maiden_flight",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "image_url",
+            "columnName": "rocket_image",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "successful_launches",
+            "columnName": "rocket_detail_launches_success",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "failed_launches",
+            "columnName": "rocket_detail_launches_fail",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.id",
+            "columnName": "launch_provider_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.name",
+            "columnName": "launch_provider_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.type",
+            "columnName": "launch_provider_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.country_code",
+            "columnName": "launch_provider_country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.description",
+            "columnName": "launch_provider_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.administrator",
+            "columnName": "launch_provider_administrator",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.founding_year",
+            "columnName": "founding_year",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.launchers",
+            "columnName": "launch_provider_launchers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.spacecraft",
+            "columnName": "launch_provider_spacecraft",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.total_launch_count",
+            "columnName": "launch_provider_count",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.successful_launches",
+            "columnName": "launch_provider_launches_success",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.failed_launches",
+            "columnName": "launch_provider_launches_fail",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.successful_landings",
+            "columnName": "launch_provider_landing_success",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.failed_landings",
+            "columnName": "launch_provider_landing_fail",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.image_url",
+            "columnName": "launch_provider_image",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.logo_url",
+            "columnName": "launch_provider_logo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "manufacturer.info_url",
+            "columnName": "launch_provider_info",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eaf8e579cd833c33a155b9f92098efb0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '40fdbe8b1ce1b5448f85f6b17ab7e59a')"
     ]
   }
 }

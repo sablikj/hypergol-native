@@ -18,6 +18,7 @@ import com.example.hypergol.screens.wiki.launches.LaunchesScreen
 import com.example.hypergol.screens.wiki.agency.LspScreen
 import com.example.hypergol.screens.wiki.agency.detail.AgencyDetailScreen
 import com.example.hypergol.screens.wiki.rockets.RocketsScreen
+import com.example.hypergol.screens.wiki.rockets.detail.RocketDetailScreen
 import com.example.hypergol.util.Constants
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagingApi::class, ExperimentalCoilApi::class)
@@ -40,7 +41,7 @@ fun NavGraphBuilder.wikiNavGraph(navController: NavHostController) {
         // Rockets
         composable(route = Constants.Routes.WIKI_ROCKETS_ROUTE) { backStackEntry ->
             RocketsScreen(
-                onDetailClicked = { rocketId ->
+                onRocketDetail = { rocketId ->
                     if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
                         navController.navigate("${Constants.Routes.ROCKET_DETAIL_ROUTE}/$rocketId")
                     }
@@ -81,6 +82,17 @@ fun NavGraphBuilder.wikiNavGraph(navController: NavHostController) {
             AgencyDetailScreen()
         }
 
+        // Rocket detail
+        composable(
+            route = "${Constants.Routes.ROCKET_DETAIL_ROUTE}/{${Constants.Routes.ROCKET_DETAIL_ID}}",
+            arguments = listOf(
+                navArgument(Constants.Routes.ROCKET_DETAIL_ID) {
+                    type = NavType.IntType
+                }
+            ),
+        ) {
+            RocketDetailScreen()
+        }
 
     }
 }

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("rocket")
-data class Rocket(
+data class LaunchRocket(
     @ColumnInfo(name = "rocket_id")
     val id: Int = 0,
     @Embedded
@@ -32,7 +32,7 @@ data class Configuration(
     val diameter: Double? = 0.0,
     val launch_cost: String? = "",
     val leo_capacity: Int? = 0,
-    val geo_capacity: Int? = 0,
+    val gto_capacity: Int? = 0,
     @ColumnInfo(name = "rocket_image")
     val image_url: String? = "",
     @ColumnInfo(name = "rocket_count")

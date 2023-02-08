@@ -8,9 +8,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.time.toJavaDuration
 
-fun formatDate(dateUTC: String?) : String {
+fun formatDate(dateUTC: String?, isReadable: Boolean) : String {
     if (dateUTC.isNullOrEmpty()) return "No date"
 
+    if(isReadable){
+        val date = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).parse(dateUTC)
+        val newFormat = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
+        return date?.let { newFormat.format(it) }.orEmpty()
+    }
     val date = SimpleDateFormat("yyyy-mm-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse(dateUTC)
     val newFormat = SimpleDateFormat("dd/MM/yyy HH:mm", Locale.getDefault())
     return date?.let { newFormat.format(it) }.orEmpty()

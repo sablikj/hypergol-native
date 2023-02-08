@@ -1,52 +1,56 @@
 package com.example.hypergol.screens.news
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Spinner
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.hypergol.util.Constants.TWITTER_TIMELINE_DARK
 import com.example.hypergol.util.Constants.TWITTER_TIMELINE_LIGHT
+import com.valentinilk.shimmer.Shimmer
+import com.valentinilk.shimmer.ShimmerBounds
+import com.valentinilk.shimmer.rememberShimmer
+import com.valentinilk.shimmer.shimmer
 
 
+@SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun NewsScreen(){
-    TwitterTimeline()
-}
-
-@Composable
-fun TwitterTimeline(
+fun NewsScreen(
     useDarkTheme: Boolean = isSystemInDarkTheme()
 ){
-        AndroidView(
-        modifier = Modifier.fillMaxWidth(),
+    val data = if(useDarkTheme){ TWITTER_TIMELINE_DARK } else {TWITTER_TIMELINE_LIGHT }
+
+    AndroidView(
+        modifier = Modifier.fillMaxSize(),
         factory = {
-        WebView(it).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            webViewClient = WebViewClient()
-            setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            WebView(it).apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+                webViewClient = WebViewClient()
+                setLayerType(View.LAYER_TYPE_HARDWARE, null)
+                settings.javaScriptEnabled = true
 
-            settings.javaScriptEnabled = true
-
-            if(!useDarkTheme){
-                loadData(TWITTER_TIMELINE_LIGHT, "text/html", "UTF-8")
-            }else{
-                loadData(TWITTER_TIMELINE_DARK, "text/html", "UTF-8")
+                loadData(data, "text/html", null)
             }
+        }, update = {
+            it.loadData(data, "text/html", null)
         }
-    })
+    )
 }
 
 @Composable
-@Preview
-fun NewsScreenPreview(){
-    NewsScreen()
+fun Modal(loading: Boolean, function: () -> Unit) {
+
 }

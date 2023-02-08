@@ -9,11 +9,13 @@ object Constants {
     const val LAUNCH_TABLE = "launch_table"
     const val LAUNCH_DETAIL_TABLE = "launch_detail_table"
     const val AGENCY_TABLE = "launch_service_provider"
+    const val ROCKET_TABLE = "rocket_detail_table"
 
     // Key tables
     const val UPCOMING_LAUNCH_REMOTE_KEYS_TABLE = "upcoming_launch_remote_keys"
     const val LAUNCH_REMOTE_KEYS_TABLE = "launch_remote_keys"
     const val AGENCY_REMOTE_KEYS_TABLE = "agency_remote_keys"
+    const val ROCKET_REMOTE_KEYS_TABLE = "rocket_remote_keys"
 
     const val DATABASE_NAME = "hypergol_database"
 

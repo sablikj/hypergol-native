@@ -8,11 +8,13 @@ import androidx.paging.PagingData
 import com.example.hypergol.data.local.HypergolDatabase
 import com.example.hypergol.data.paging.AgencyRemoteMediator
 import com.example.hypergol.data.paging.LaunchRemoteMediator
+import com.example.hypergol.data.paging.RocketRemoteMediator
 import com.example.hypergol.data.paging.UpcomingLaunchRemoteMediator
 import com.example.hypergol.data.remote.LaunchApi
 import com.example.hypergol.model.launch.Launch
-import com.example.hypergol.model.LaunchDetail
+import com.example.hypergol.model.launch.LaunchDetail
 import com.example.hypergol.model.common.Agency
+import com.example.hypergol.model.rocket.Rocket
 import com.example.hypergol.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -82,6 +84,32 @@ class Repository  @Inject constructor(
         try {
             val agency: Agency = launchApi.getAgency(id)
             hypergolDatabase.agencyDao().insert(agency)
+        }catch (e: Exception){
+            Log.d("Error", e.toString())
+        }
+    }
+
+    // Rocket
+    @ExperimentalPagingApi
+    fun getRockets(): Flow<PagingData<Rocket>> {
+        val pagingSourceFactory = { hypergolDatabase.rocketDetailDao().getRockets() }
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            remoteMediator = RocketRemoteMediator(
+                launchApi = launchApi,
+                hypergolDatabase = hypergolDatabase
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
+    }
+
+    fun getRocketDetail(rocketId: Int): Flow<Rocket?> =
+        hypergolDatabase.rocketDetailDao().getRocketDetail(rocketId)
+
+    suspend fun refreshRocketDetail(id: Int) {
+        try {
+            val rocket: Rocket = launchApi.getRocket(id)
+            hypergolDatabase.rocketDetailDao().insert(rocket)
         }catch (e: Exception){
             Log.d("Error", e.toString())
         }

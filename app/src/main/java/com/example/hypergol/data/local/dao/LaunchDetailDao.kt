@@ -1,7 +1,7 @@
 package com.example.hypergol.data.local.dao
 
 import androidx.room.*
-import com.example.hypergol.model.LaunchDetail
+import com.example.hypergol.model.launch.LaunchDetail
 import kotlinx.coroutines.flow.Flow
 
 @Dao
