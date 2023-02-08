@@ -33,4 +33,8 @@ data class Launch(
 )
 
 @Serializable
-data class LaunchResponse(val results: List<Launch>)
+data class LaunchResponse(val results: List<Launch>, val count: Int = 0) {
+    fun distinct(): List<Launch> {
+        return results.take(count)
+    }
+}

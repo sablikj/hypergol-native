@@ -32,6 +32,13 @@ interface LaunchApi {
         @Path("id") id: String
     ): LaunchDetail
 
+    // Launch search
+    @GET("launch/?mode=detailed&format=json")
+    suspend fun searchLaunches(
+        @Query("search") query: String,
+        @Query("limit") limit: Int
+    ): LaunchResponse
+
     // All agencies
     @GET("agencies/?mode=detailed&format=json&featured=true")
     suspend fun getAgencies(

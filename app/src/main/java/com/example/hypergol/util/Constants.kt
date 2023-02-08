@@ -41,6 +41,11 @@ object Constants {
         const val ROCKET_DETAIL_ID = "rocketId"
         const val LSP_DETAIL_ID = "lspId"
         const val ASTRONAUT_DETAIL_ID = "astronautId"
+
+        // Search routes
+        const val LAUNCH_SEARCH_ROUTE = "searchLaunch"
+        const val ROCKET_SEARCH_ROUTE = "searchRocket"
+        const val AGENCY_SEARCH_ROUTE = "searchAgency"
     }
 
     object Graph {

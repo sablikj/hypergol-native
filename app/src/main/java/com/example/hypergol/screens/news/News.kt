@@ -22,6 +22,7 @@ import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
 
+//TODO: Rename screen files to *Screen
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable

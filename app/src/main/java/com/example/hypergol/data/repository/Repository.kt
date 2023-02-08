@@ -10,6 +10,7 @@ import com.example.hypergol.data.paging.AgencyRemoteMediator
 import com.example.hypergol.data.paging.LaunchRemoteMediator
 import com.example.hypergol.data.paging.RocketRemoteMediator
 import com.example.hypergol.data.paging.UpcomingLaunchRemoteMediator
+import com.example.hypergol.data.paging.search.LaunchSearchPagingSource
 import com.example.hypergol.data.remote.LaunchApi
 import com.example.hypergol.model.launch.Launch
 import com.example.hypergol.model.launch.LaunchDetail
@@ -61,6 +62,16 @@ class Repository  @Inject constructor(
         }catch (e: Exception){
             Log.d("ErrorLaunchDetail", e.toString())
         }
+    }
+
+    // Search is not cached
+    fun searchLaunches(query: String): Flow<PagingData<Launch>> {
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            pagingSourceFactory = {
+                LaunchSearchPagingSource(launchApi = launchApi, query = query)
+            }
+        ).flow
     }
 
     // Agency
