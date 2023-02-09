@@ -19,9 +19,6 @@ data class LaunchDetail(
     val name: String? = "",
     @Embedded
     val status: Status? = Status(),
-    //@Embedded
-    //@TypeConverters(Converters::class)
-    //val updates: MutableList<Update>,
     val net: String? = "",
     val window_end: String? = "",
     val window_start: String? = "",
@@ -36,12 +33,3 @@ data class LaunchDetail(
     @SerialName("image")
     val image_url: String? = ""
     )
-
-@Serializable
-data class Update(
-    val profile_image: String?,
-    val comment: String?,
-    val info_url: String?,
-    val created_by: String?,
-    val created_on: String?
-)

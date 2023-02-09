@@ -18,11 +18,9 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 
@@ -115,14 +113,4 @@ fun SearchWidget(
             )
         )
     }
-}
-
-@Composable
-@Preview
-fun SearchWidgetPreview() {
-    SearchWidget(
-        text = "Search",
-        onTextChange = {},
-        onSearchClicked = {}
-    ) {}
 }

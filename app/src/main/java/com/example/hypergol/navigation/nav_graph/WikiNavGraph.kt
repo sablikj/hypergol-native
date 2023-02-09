@@ -12,9 +12,8 @@ import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
 import com.example.hypergol.navigation.BottomBarScreen
 import com.example.hypergol.screens.wiki.agency.AgencySearchScreen
-import com.example.hypergol.screens.wiki.astronauts.AstronautsScreen
 import com.example.hypergol.screens.wiki.launches.LaunchesScreen
-import com.example.hypergol.screens.wiki.agency.LspScreen
+import com.example.hypergol.screens.wiki.agency.AgencyScreen
 import com.example.hypergol.screens.wiki.agency.detail.AgencyDetailScreen
 import com.example.hypergol.screens.wiki.launches.LaunchSearchScreen
 import com.example.hypergol.screens.wiki.rockets.RocketSearchScreen
@@ -52,7 +51,7 @@ fun NavGraphBuilder.wikiNavGraph(navController: NavHostController) {
         }
         // LSP / Agency
         composable(route = Routes.WIKI_AGENCY_ROUTE) { backStackEntry ->
-            LspScreen(
+            AgencyScreen(
                 onAgencyDetail = { lspID ->
                     if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
                         navController.navigate("${Routes.LSP_DETAIL_ROUTE}/$lspID")
@@ -60,16 +59,7 @@ fun NavGraphBuilder.wikiNavGraph(navController: NavHostController) {
                 }
             )
         }
-        // Astronauts
-        composable(route = Routes.WIKI_ASTRONAUTS_ROUTE) { backStackEntry ->
-            AstronautsScreen(
-                onDetailClicked = { astronautId ->
-                    if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
-                        navController.navigate("${Routes.ASTRONAUT_DETAIL_ROUTE}/$astronautId")
-                    }
-                }
-            )
-        }
+
         // Details
         // Agency detail
         composable(

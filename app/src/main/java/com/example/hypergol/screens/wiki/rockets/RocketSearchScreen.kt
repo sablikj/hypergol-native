@@ -19,7 +19,6 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import coil.annotation.ExperimentalCoilApi
-import com.example.hypergol.screens.common.LaunchItem
 import com.example.hypergol.screens.common.RocketItem
 import com.example.hypergol.screens.common.SearchWidget
 
@@ -60,7 +59,7 @@ fun RocketSearchScreen(
             ){
                 itemsIndexed(results
                 ){
-                        i, rocket ->
+                        _, rocket ->
                     rocket?.let {
                         RocketItem(rocket = rocket, onDetailClicked = onDetailClicked)
                     }

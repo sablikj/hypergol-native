@@ -42,12 +42,10 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
         colors = CardDefaults.cardColors(
             containerColor =  MaterialTheme.colorScheme.primary,
         ),
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         Box(
-            Modifier
-                .fillMaxWidth(),
+            Modifier.fillMaxWidth(),
             contentAlignment = Alignment.BottomCenter
         ) {
             Column {
@@ -96,7 +94,6 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                 // LSP, NET
                 Row(
                     modifier = Modifier
-
                         .fillMaxWidth()
                         .padding(horizontal = 6.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -128,7 +125,8 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                         onClick = {},
                         label = {
                             Text(
-                                text = "${launch.mission?.orbit?.name}",
+                                text = if(launch.mission?.orbit?.name.isNullOrEmpty()){"Unknown"}
+                                    else{ "${launch.mission?.orbit?.name}"},
                                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                 fontWeight = FontWeight.Medium
@@ -150,7 +148,8 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                         onClick = {},
                         label = {
                             Text(
-                                text = "${launch.mission?.type}",
+                                text = if(launch.mission?.type.isNullOrEmpty()){"Unknown"}
+                                else{ "${launch.mission?.type}"},
                                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                 fontWeight = FontWeight.Medium

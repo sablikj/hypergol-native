@@ -21,7 +21,6 @@ import androidx.paging.compose.itemsIndexed
 import coil.annotation.ExperimentalCoilApi
 import com.example.hypergol.screens.common.AgencyItem
 import com.example.hypergol.screens.common.SearchWidget
-import com.example.hypergol.screens.wiki.rockets.RocketsViewModel
 
 @SuppressLint("UnrememberedMutableState")
 @ExperimentalMaterialApi

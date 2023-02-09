@@ -18,7 +18,6 @@ object Constants {
     const val ROCKET_REMOTE_KEYS_TABLE = "rocket_remote_keys"
 
     const val DATABASE_NAME = "hypergol_database"
-
     const val ITEMS_PER_PAGE = 8
 
     const val TWITTER_TIMELINE_DARK = "<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-theme=\"dark\" href=\"https://twitter.com/NASASpaceflight?ref_src=twsrc%5Etfw\">Tweets by NASASpaceflight</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"
@@ -29,18 +28,15 @@ object Constants {
         const val WIKI_LAUNCHES_ROUTE = "wiki/launches"
         const val WIKI_ROCKETS_ROUTE = "wiki/rockets"
         const val WIKI_AGENCY_ROUTE = "wiki/agency"
-        const val WIKI_ASTRONAUTS_ROUTE = "wiki/astronauts"
 
         const val LAUNCH_DETAIL_ROUTE = "launch"
         const val LSP_DETAIL_ROUTE = "agency"
         const val ROCKET_DETAIL_ROUTE = "rocket"
-        const val ASTRONAUT_DETAIL_ROUTE = "astronaut"
 
         // Detail keys
         const val LAUNCH_DETAIL_ID = "launchId"
         const val ROCKET_DETAIL_ID = "rocketId"
         const val LSP_DETAIL_ID = "lspId"
-        const val ASTRONAUT_DETAIL_ID = "astronautId"
 
         // Search routes
         const val LAUNCH_SEARCH_ROUTE = "searchLaunch"

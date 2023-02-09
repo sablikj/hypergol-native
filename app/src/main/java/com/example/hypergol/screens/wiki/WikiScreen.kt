@@ -107,30 +107,5 @@ fun WikiScreen(navController: NavHostController) {
                 )
             }
         }
-        Card(
-            onClick = { navController.navigate(Routes.WIKI_ASTRONAUTS_ROUTE)},
-            modifier = Modifier
-                .padding(6.dp)
-                .fillMaxWidth()
-        ) {
-            Box(
-                Modifier
-                    .fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = painterResource(id = R.drawable.astronauts),
-                    contentDescription = "Astronauts",
-                    contentScale = ContentScale.Crop
-                )
-                Text(
-                    text = "Astronauts",
-                    color = Color.White,
-                    fontSize = MaterialTheme.typography.headlineLarge.fontSize,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-        }
     }
 }

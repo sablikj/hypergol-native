@@ -20,19 +20,21 @@ class RocketDetailViewModel @Inject constructor(
     private val repository: Repository,
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
-
+    val loading = mutableStateOf(false)
     private val rocketId: Int? = savedStateHandle[Constants.Routes.ROCKET_DETAIL_ID]
     var rocket by mutableStateOf(Rocket())
         private set
 
     init {
         rocketId?.let {
+            loading.value = true
             viewModelScope.launch(Dispatchers.IO) {
                 repository.refreshRocketDetail(rocketId)
                 repository.getRocketDetail(it).collect {detail ->
                     withContext(Dispatchers.Main) {
                         if (detail != null) {
                             rocket = detail
+                            loading.value = false
                         }
                     }
                 }

@@ -3,9 +3,7 @@ package com.example.hypergol.model.common
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.hypergol.model.launch.Launch
 import com.example.hypergol.util.Constants.AGENCY_TABLE
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -45,8 +43,6 @@ data class Agency(
     val logo_url: String? = "",
     @ColumnInfo(name = "launch_provider_info")
     val info_url: String? = "",
-    // TODO: Add GSON converter
-    //val launcher_list: []
 )
 
 @Serializable

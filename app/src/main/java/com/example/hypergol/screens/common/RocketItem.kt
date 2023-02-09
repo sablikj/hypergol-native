@@ -21,7 +21,6 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.hypergol.R
-import com.example.hypergol.model.launch.Launch
 import com.example.hypergol.model.rocket.Rocket
 
 @ExperimentalMaterialApi
@@ -43,12 +42,10 @@ fun RocketItem(rocket: Rocket, onDetailClicked: (Int) -> Unit){
         colors = CardDefaults.cardColors(
             containerColor =  MaterialTheme.colorScheme.primary,
         ),
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         Box(
-            Modifier
-                .fillMaxWidth(),
+            Modifier.fillMaxWidth(),
             contentAlignment = Alignment.BottomCenter
         ) {
             Column {
@@ -95,7 +92,7 @@ fun RocketItem(rocket: Rocket, onDetailClicked: (Int) -> Unit){
                         onClick = {},
                         label = {
                             Text(
-                                text = if(rocket.active) {"Active"}else{"Discontinued"},
+                                text = if(rocket.active) {"Active"}else{"Not used"},
                                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                 fontWeight = FontWeight.Medium

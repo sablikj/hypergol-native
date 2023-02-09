@@ -57,7 +57,7 @@ fun LaunchSearchScreen(
             ){
                 itemsIndexed(results
                 ){
-                        i, launch ->
+                        _, launch ->
                     launch?.let {
                         LaunchItem(launch = launch, onDetailClicked = onDetailClicked, upcoming = false)
                     }
