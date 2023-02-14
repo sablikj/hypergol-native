@@ -62,7 +62,7 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 6.dp),
+                        .padding(horizontal = 6.dp, vertical = 3.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -77,13 +77,14 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                     )
                     if(upcoming){
                         ElevatedSuggestionChip(
+                            modifier = Modifier.padding(horizontal = 3.dp),
                             colors = SuggestionChipDefaults.elevatedSuggestionChipColors(
-                                containerColor =  MaterialTheme.colorScheme.primaryContainer),
+                                containerColor =  MaterialTheme.colorScheme.secondary),
                             onClick = {},
                             label = {
                                 Text(
                                     text = "T - ${launch.net?.let { getRemainingTime(it, false) }}",
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                    color = MaterialTheme.colorScheme.onSecondary,
                                     fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                                     fontWeight = FontWeight.Normal
                                 )
@@ -121,13 +122,20 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                 ){
                     ElevatedSuggestionChip(
                         colors = SuggestionChipDefaults.elevatedSuggestionChipColors(
-                            containerColor =  MaterialTheme.colorScheme.secondaryContainer),
+                            containerColor =  MaterialTheme.colorScheme.secondary),
                         onClick = {},
                         label = {
                             Text(
-                                text = if(launch.mission?.orbit?.name.isNullOrEmpty()){"Unknown"}
-                                    else{ "${launch.mission?.orbit?.name}"},
-                                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                text =
+                                    when(launch.mission?.orbit?.name){
+                                        null -> "Unknown"
+                                        "" -> "Unknown"
+                                        "Geostationary Transfer Orbit" -> "GTO"
+                                        "Sun-Synchronous Orbit" -> "SSO"
+                                        "Low Earth Orbit" -> "LEO"
+                                        else -> launch.mission.orbit.name
+                                    },
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                 fontWeight = FontWeight.Medium
                             )
@@ -138,19 +146,21 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                                 contentDescription = "Orbit",
                                 modifier = Modifier
                                     .size(ChipDefaults.LeadingIconSize)
-                                    .wrapContentSize(align = Alignment.Center)
+                                    .wrapContentSize(align = Alignment.Center),
+                                tint = MaterialTheme.colorScheme.onSecondary
                             )
                         }
                     )
                     ElevatedSuggestionChip(
                         colors = SuggestionChipDefaults.elevatedSuggestionChipColors(
-                            containerColor =  MaterialTheme.colorScheme.secondaryContainer),
+                            containerColor =  MaterialTheme.colorScheme.secondary),
                         onClick = {},
                         label = {
                             Text(
                                 text = if(launch.mission?.type.isNullOrEmpty()){"Unknown"}
-                                else{ "${launch.mission?.type}"},
-                                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                else{ if(launch.mission?.type == "Government/Top Secret"){"Government"}
+                                else{"${launch.mission?.type}"}},
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                 fontWeight = FontWeight.Medium
                             )
@@ -161,7 +171,8 @@ fun LaunchItem(launch: Launch, onDetailClicked: (String) -> Unit, upcoming: Bool
                                 contentDescription = "Mission type",
                                 modifier = Modifier
                                     .size(ChipDefaults.LeadingIconSize)
-                                    .wrapContentSize(align = Alignment.Center)
+                                    .wrapContentSize(align = Alignment.Center),
+                                tint = MaterialTheme.colorScheme.onSecondary
                             )
                         }
                     )

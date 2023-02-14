@@ -55,7 +55,6 @@ fun UpcomingLaunchesScreen(
                             .fillMaxSize()
                     ){
                         // Countdown
-                        // TODO: Implement countdown
                         var remainingTime by remember { mutableStateOf("") }
                         LaunchedEffect(Unit){
                             while(true){

@@ -20,8 +20,8 @@ object Constants {
     const val DATABASE_NAME = "hypergol_database"
     const val ITEMS_PER_PAGE = 8
 
-    const val TWITTER_TIMELINE_DARK = "<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-theme=\"dark\" href=\"https://twitter.com/NASASpaceflight?ref_src=twsrc%5Etfw\">Tweets by NASASpaceflight</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"
-    const val TWITTER_TIMELINE_LIGHT = "<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-theme=\"light\" href=\"https://twitter.com/NASASpaceflight?ref_src=twsrc%5Etfw\">Tweets by NASASpaceflight</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"
+    const val TWITTER_TIMELINE_DARK = "<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-theme=\"dark\" href=\"https://twitter.com/NASASpaceflight?ref_src=twsrc%5Etfw\"></a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"
+    const val TWITTER_TIMELINE_LIGHT = "<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-theme=\"light\" href=\"https://twitter.com/NASASpaceflight?ref_src=twsrc%5Etfw\"></a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"
 
     object Routes {
         // Main routes

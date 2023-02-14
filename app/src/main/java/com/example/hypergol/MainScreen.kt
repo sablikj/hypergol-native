@@ -1,13 +1,13 @@
 package com.example.hypergol
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -40,7 +40,7 @@ fun MainScreen(navController: NavHostController){
                             Text(
                                 stringResource(id = R.string.app_name),
                                 style = MaterialTheme.typography.headlineLarge,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                                color = MaterialTheme.colorScheme.onPrimary
                             )
                         },
                         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary)
@@ -50,21 +50,24 @@ fun MainScreen(navController: NavHostController){
                    TopBar(text = "Rocket Launches",
                        onSearchClicked = {
                            navController.navigate(Routes.LAUNCH_SEARCH_ROUTE)
-                       }
+                       },
+                       navController = navController
                    )
                 }
                 Routes.WIKI_AGENCY_ROUTE -> {
                     TopBar(text = "Launch Providers",
                         onSearchClicked = {
                             navController.navigate(Routes.AGENCY_SEARCH_ROUTE)
-                        }
+                        },
+                        navController = navController
                     )
                 }
                 Routes.WIKI_ROCKETS_ROUTE -> {
                     TopBar(text = "Rockets",
                         onSearchClicked = {
                             navController.navigate(Routes.ROCKET_SEARCH_ROUTE)
-                        }
+                        },
+                        navController = navController
                     )
                 }
                 "searchLaunch", "searchRocket", "searchAgency" -> {}
@@ -74,9 +77,20 @@ fun MainScreen(navController: NavHostController){
                             Text(
                                 text= "Detail",
                                 style = MaterialTheme.typography.headlineMedium,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                                color = MaterialTheme.colorScheme.onPrimary
                             )
                         },
+                        navigationIcon = { IconButton(
+                            onClick = { navController.popBackStack() },
+                            content = { Icon(
+                                painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
+                                contentDescription = "Back",
+                                tint = MaterialTheme.colorScheme.onPrimary,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .wrapContentSize(align = Alignment.Center)
+                            )}
+                        )},
                         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary)
                     )
                 }

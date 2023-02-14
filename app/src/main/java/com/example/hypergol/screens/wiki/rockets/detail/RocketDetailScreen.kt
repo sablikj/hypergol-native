@@ -216,7 +216,8 @@ fun RocketDetailScreen() {
                                     )
                                     Text(
                                         modifier = Modifier.padding(6.dp),
-                                        text = rocket.length.toString() + " m",
+                                        text = if(rocket.length == null) {"Unknown"}
+                                            else {rocket.length.toString() + " m"},
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                         fontWeight = FontWeight.Normal
@@ -239,7 +240,8 @@ fun RocketDetailScreen() {
                                     )
                                     Text(
                                         modifier = Modifier.padding(6.dp),
-                                        text = rocket.diameter.toString() + " m",
+                                        text = if(rocket.diameter == null) {"Unknown"}
+                                        else {rocket.diameter.toString() + " m"},
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                         fontWeight = FontWeight.Normal

@@ -38,8 +38,7 @@ fun LaunchDetail()
             .build(),
         contentScale = ContentScale.Fit
     )
-
-    val rocketPainter = rememberAsyncImagePainter(
+    var rocketPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(uiState.detail?.rocket?.configuration?.image_url)
             .crossfade(durationMillis = 1000)
@@ -48,6 +47,9 @@ fun LaunchDetail()
             .build(),
         contentScale = ContentScale.Fit
     )
+    if(uiState.detail?.rocket?.configuration?.image_url.isNullOrEmpty()){
+        rocketPainter = launchPainter
+    }
 
     val padPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
@@ -356,7 +358,8 @@ fun LaunchDetail()
                                     )
                                     Text(
                                         modifier = Modifier.padding(6.dp),
-                                        text = uiState.detail?.rocket?.configuration?.length.toString() + " m",
+                                        text = if(uiState.detail?.rocket?.configuration?.length == null) {"Unknown"}
+                                        else {uiState.detail.rocket.configuration.length.toString() + " m"},
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                         fontWeight = FontWeight.Normal
@@ -379,7 +382,8 @@ fun LaunchDetail()
                                     )
                                     Text(
                                         modifier = Modifier.padding(6.dp),
-                                        text = uiState.detail?.rocket?.configuration?.diameter.toString() + " m",
+                                        text = if(uiState.detail?.rocket?.configuration?.diameter == null) {"Unknown"}
+                                        else {uiState.detail.rocket.configuration.diameter.toString() + " m"},
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                         fontWeight = FontWeight.Normal
@@ -410,7 +414,8 @@ fun LaunchDetail()
                                     )
                                     Text(
                                         modifier = Modifier.padding(6.dp),
-                                        text = uiState.detail?.rocket?.configuration?.leo_capacity.toString() + " kg",
+                                        text = if(uiState.detail?.rocket?.configuration?.leo_capacity == null) {"Unknown"}
+                                        else{uiState.detail.rocket.configuration.leo_capacity.toString() + " kg"},
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                         fontWeight = FontWeight.Normal
@@ -433,7 +438,8 @@ fun LaunchDetail()
                                     )
                                     Text(
                                         modifier = Modifier.padding(6.dp),
-                                        text = uiState.detail?.rocket?.configuration?.gto_capacity.toString() + " kg",
+                                        text = if(uiState.detail?.rocket?.configuration?.gto_capacity == null) {"Unknown"}
+                                        else{uiState.detail.rocket.configuration.gto_capacity.toString() + " kg"},
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                                         fontWeight = FontWeight.Normal
