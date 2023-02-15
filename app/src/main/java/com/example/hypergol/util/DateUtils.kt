@@ -14,7 +14,7 @@ fun formatDate(dateUTC: String?, isReadable: Boolean) : String {
         val newFormat = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
         return date?.let { newFormat.format(it) }.orEmpty()
     }
-    val date = SimpleDateFormat("yyyy-mm-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse(dateUTC)
+    val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse(dateUTC)
     val newFormat = SimpleDateFormat("dd/MM/yyy HH:mm", Locale.getDefault())
     return date?.let { newFormat.format(it) }.orEmpty()
 }
